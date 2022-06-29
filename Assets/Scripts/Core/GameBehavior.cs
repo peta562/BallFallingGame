@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Configs;
+using Core.Balls;
+using Core.Score;
 using UnityEngine;
 
 namespace Core {
@@ -7,7 +9,7 @@ namespace Core {
         [SerializeField] GameConfig  _gameConfig;
         [SerializeField] BallFactory _ballFactory;
 
-        readonly List<IController> _controllers = new List<IController>();
+        readonly List<BaseController> _controllers = new List<BaseController>();
 
         void Awake() {
             CreateControllers();
@@ -20,6 +22,8 @@ namespace Core {
 
         void CreateControllers() {
             _controllers.Add(new BallsController(_gameConfig, _ballFactory));
+            _controllers.Add(new LivesController(_gameConfig));
+            _controllers.Add(new ScoreController(_gameConfig));
         }
         
         void Init() {

@@ -1,8 +1,8 @@
-﻿using Core.EventBus.Events;
-using Core.EventBus;
+﻿using Core.EventBus;
+using Core.EventBus.Events;
 using UnityEngine;
 
-namespace Core.Balls {
+namespace Core.Balls.BallEntity {
     public sealed class Ball : MonoBehaviour {
         [SerializeField] BallMover _ballMover;
         [SerializeField] BallView _ballView;

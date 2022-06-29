@@ -1,10 +1,10 @@
-﻿using Core.Balls;
+﻿using Core.Balls.BallEntity;
 
 namespace Core.EventBus.Events {
-    public readonly struct BallDied {
+    public readonly struct BallKilled {
         public readonly Ball Ball;
 
-        public BallDied(Ball ball) {
+        public BallKilled(Ball ball) {
             Ball = ball;
         }
     }

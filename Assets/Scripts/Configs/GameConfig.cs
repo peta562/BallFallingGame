@@ -7,5 +7,6 @@ namespace Configs {
         public int Speed;
         public float BallDeltaSpawn;
         public float Damage;
+        public int Score;
     }
 }

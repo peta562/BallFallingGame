@@ -1,4 +1,4 @@
-﻿using Core.Balls;
+﻿using Core.Balls.BallEntity;
 
 namespace Core.EventBus.Events {
     public readonly struct BallClicked {

@@ -1,10 +1,10 @@
 ﻿using Configs;
-using Core.Balls;
 using Core.ObjectPool;
+using Core.Balls.BallEntity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Core {
+namespace Core.Balls {
     public class BallFactory : MonoBehaviour {
         const int InitialStockCount = 5;
 

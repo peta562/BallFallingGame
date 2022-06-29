@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Configs;
-using Core.Balls;
 using Core.EventBus;
+using Core.Balls.BallEntity;
 using Core.EventBus.Events;
 using UnityEngine;
 
-namespace Core {
-    public class BallsController : IController {
+namespace Core.Balls {
+    public sealed class BallsController : BaseController {
         readonly BallFactory _ballFactory;
         readonly GameConfig _gameConfig;
 
@@ -21,24 +21,24 @@ namespace Core {
             _ballFactory = ballFactory;
         }
         
-        public void Init() {
+        public override void Init() {
             _camera = Camera.main;
             
             EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
         }
 
-        public void Update() {
+        public override void Update() {
             _ballSpawnDeltaTime += Time.deltaTime;
         
             stageDimensions = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
             
             CheckForSpawn();
             CheckBallsOutOfBounds();
-            UpdateBalls();
+            MoveBalls();
         }
 
-        public void DeInit() {
+        public override void DeInit() {
             EventManager.Instance.Unsubscribe<BallClicked>(OnBallClicked);
             EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
         }
@@ -63,20 +63,24 @@ namespace Core {
             _balls.Add(ball);
         }
 
-        void UpdateBalls() {
+        void MoveBalls() {
             for (int i = _balls.Count - 1; i >= 0; i--) {
                 _balls[i].Move(_gameConfig.Speed);
             }
         }
 
         void OnBallClicked(BallClicked ev) {
-            ev.Ball.ApplyDamage(_gameConfig.Damage);
+            var ball = ev.Ball;
             
-            if ( ev.Ball.Health <= 0 ) {
-                ev.Ball.PlayDieEffect();
-                RemoveBall(ev.Ball);
+            ball.ApplyDamage(_gameConfig.Damage);
+            
+            if ( ball.Health <= 0 ) {
+                ball.PlayDieEffect();
+                RemoveBall(ball);
+                
+                EventManager.Instance.Fire(new BallKilled(ball));
             } else {
-                ev.Ball.PlayHitEffect();
+                ball.PlayHitEffect();
             }
         }
 
