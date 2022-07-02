@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Core.Balls.BallEntity {
     public sealed class Ball : MonoBehaviour {
-        [SerializeField] BallMover _ballMover;
-        [SerializeField] BallView _ballView;
-        [SerializeField] BallEffect _ballEffect;
-        [SerializeField] BallFellDetector _ballFellDetector;
-        [SerializeField] BallClickHandler _ballClickHandler;
+        [SerializeField] BallMover BallMover;
+        [SerializeField] BallView BallView;
+        [SerializeField] BallEffect BallEffect;
+        [SerializeField] BallFellDetector BallFellDetector;
+        [SerializeField] BallClickHandler BallClickHandler;
 
         float _health;
 
@@ -20,29 +20,29 @@ namespace Core.Balls.BallEntity {
 
             _health = health;
 
-            _ballView.Init(sprite, color);
-            _ballEffect.Init(color, scale);
+            BallView.Init(sprite, color);
+            BallEffect.Init(color, scale);
 
-            _ballFellDetector.OnBallFell += OnBallFell;
-            _ballClickHandler.OnBallClicked += OnBallClick;
+            BallFellDetector.OnBallFell += OnBallFell;
+            BallClickHandler.OnBallClicked += OnBallClick;
         }
 
         public void DeInit() {
-            _ballFellDetector.OnBallFell -= OnBallFell;
-            _ballClickHandler.OnBallClicked -= OnBallClick;
+            BallFellDetector.OnBallFell -= OnBallFell;
+            BallClickHandler.OnBallClicked -= OnBallClick;
         }
 
         public void Move(float speed) {
-            _ballMover.Move(speed);
+            BallMover.Move(speed);
         }
 
         public void CheckOutOfBounds(Vector2 stageDimensions) {
-            _ballFellDetector.CheckOutOfBounds(transform.position, transform.localScale.y, stageDimensions);
+            BallFellDetector.CheckOutOfBounds(transform.position, transform.localScale.y, stageDimensions);
         }
 
-        public void PlayDieEffect() => _ballEffect.PlayDieEffect();
+        public void PlayDieEffect() => BallEffect.PlayDieEffect();
         
-        public void PlayHitEffect() => _ballEffect.PlayHitEffect();
+        public void PlayHitEffect() => BallEffect.PlayHitEffect();
 
         public void ApplyDamage(float damage) {
             _health -= damage;

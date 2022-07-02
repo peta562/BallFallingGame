@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d219ae0657c24650b1f0f47f8aea6d5e, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  Lives: 0
+  Lives: 3
   Speed: 5
   BallDeltaSpawn: 2
   Damage: 10
-  Score: 0
+  Score: 20

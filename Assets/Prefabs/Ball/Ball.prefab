@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669e851343c84816a8a96a53e55dd3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballMover: {fileID: 8102621984513228103}
-  _ballView: {fileID: 265474128069213827}
-  _ballEffect: {fileID: 1263665941457427645}
-  _ballFellDetector: {fileID: 6717599678830629416}
-  _ballClickHandler: {fileID: 2175295914980929310}
+  BallMover: {fileID: 8102621984513228103}
+  BallView: {fileID: 265474128069213827}
+  BallEffect: {fileID: 1263665941457427645}
+  BallFellDetector: {fileID: 6717599678830629416}
+  BallClickHandler: {fileID: 2175295914980929310}
 --- !u!114 &8102621984513228103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50e7a2f54ac41f393e4416631b42b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballParticleEffect: {fileID: 1263240454751821695, guid: 1d183c9f3e06f49488c49acdcfca8a6f, type: 3}
+  BallParticleEffect: {fileID: 1263240454751821695, guid: 1d183c9f3e06f49488c49acdcfca8a6f, type: 3}
 --- !u!1 &8282533541289251245
 GameObject:
   m_ObjectHideFlags: 0

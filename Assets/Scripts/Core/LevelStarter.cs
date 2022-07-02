@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace Core {
     public class LevelStarter : MonoBehaviour {
-        [SerializeField] BallFactory _ballFactory;
-        [SerializeField] LevelUI _levelUi;
+        [SerializeField] BallFactory BallFactory;
+        [SerializeField] LevelUI LevelUi;
 
         readonly List<BaseController> _controllers = new List<BaseController>();
 
@@ -28,7 +28,7 @@ namespace Core {
         void AddControllers(GameState gameState) {
 
             _controllers.Add(gameState.BallsController);
-            gameState.BallsController.ChangeFactory(_ballFactory);
+            gameState.BallsController.ChangeFactory(BallFactory);
             
             _controllers.Add(gameState.LivesController);
             _controllers.Add(gameState.ScoreController);
@@ -53,11 +53,11 @@ namespace Core {
         }
         
         void InitUI(GameState gameState) {
-            _levelUi.Init(gameState.LivesController, gameState.ScoreController);
+            LevelUi.Init(gameState.LivesController, gameState.ScoreController);
         }
 
         void DeInitUI() {
-            _levelUi.DeInit();
+            LevelUi.DeInit();
         }
     }
 }

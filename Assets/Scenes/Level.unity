@@ -327,8 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cc821532974d5abead8ae79fa258b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballFactory: {fileID: 102061631}
-  _levelUi: {fileID: 188197225}
+  BallFactory: {fileID: 102061631}
+  LevelUi: {fileID: 188197225}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

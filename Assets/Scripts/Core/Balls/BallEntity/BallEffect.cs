@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Balls {
     public sealed class BallEffect : MonoBehaviour {
-        [SerializeField] BallParticleEffect _ballParticleEffect;
+        [SerializeField] BallParticleEffect BallParticleEffect;
 
         Color _color;
         float _scale;
@@ -14,7 +14,7 @@ namespace Core.Balls {
         }
 
         public void PlayDieEffect() {
-            var ballParticleEffect = Instantiate(_ballParticleEffect, transform.position, Quaternion.identity);
+            var ballParticleEffect = Instantiate(BallParticleEffect, transform.position, Quaternion.identity);
             
             ballParticleEffect.Play(_color, _scale);
         }
