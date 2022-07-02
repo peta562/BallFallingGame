@@ -15,3 +15,5 @@ MonoBehaviour:
   Lives: 0
   Speed: 5
   BallDeltaSpawn: 2
+  Damage: 10
+  Score: 0

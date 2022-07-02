@@ -16,10 +16,11 @@ namespace Core.Balls.BallEntity {
 
         public void Init(float health, Vector2 position, float scale, Sprite sprite, Color color) {
             transform.position = position;
+            transform.localScale = new Vector2(scale, scale);
 
             _health = health;
 
-            _ballView.Init(scale, sprite, color);
+            _ballView.Init(sprite, color);
             _ballEffect.Init(color, scale);
 
             _ballFellDetector.OnBallFell += OnBallFell;

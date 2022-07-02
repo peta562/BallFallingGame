@@ -2,28 +2,36 @@
 using Configs;
 using Core.Balls;
 using Core.Score;
+using Core.UI;
 using UnityEngine;
 
 namespace Core {
-    public class GameBehavior : MonoBehaviour {
-        [SerializeField] GameConfig  _gameConfig;
+    public class LevelStarter : MonoBehaviour {
         [SerializeField] BallFactory _ballFactory;
+        [SerializeField] LevelUI _levelUi;
 
         readonly List<BaseController> _controllers = new List<BaseController>();
 
         void Awake() {
-            CreateControllers();
+            var gameState = GameState.Instance;
+            
+            AddControllers(gameState);
             Init();
+            InitUI(gameState);
         }
 
         void OnDestroy() {
             DeInit();
+            DeInitUI();
         }
 
-        void CreateControllers() {
-            _controllers.Add(new BallsController(_gameConfig, _ballFactory));
-            _controllers.Add(new LivesController(_gameConfig));
-            _controllers.Add(new ScoreController(_gameConfig));
+        void AddControllers(GameState gameState) {
+
+            _controllers.Add(gameState.BallsController);
+            gameState.BallsController.ChangeFactory(_ballFactory);
+            
+            _controllers.Add(gameState.LivesController);
+            _controllers.Add(gameState.ScoreController);
         }
         
         void Init() {
@@ -42,6 +50,14 @@ namespace Core {
             foreach (var controller in _controllers) {
                 controller.DeInit();
             }
+        }
+        
+        void InitUI(GameState gameState) {
+            _levelUi.Init(gameState.LivesController, gameState.ScoreController);
+        }
+
+        void DeInitUI() {
+            _levelUi.DeInit();
         }
     }
 }

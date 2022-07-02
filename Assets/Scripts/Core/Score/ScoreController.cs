@@ -9,10 +9,12 @@ namespace Core.Score {
         
         int _score;
 
+        public int Score => _score;
+
         public ScoreController(GameConfig gameConfig) {
             _gameConfig = gameConfig;
 
-            _ballScoreProvider = new CommonBallScoreProvider(gameConfig);
+            _ballScoreProvider = new ConfigBallScoreProvider(gameConfig);
         }
         
         public override void Init() {
@@ -25,6 +27,7 @@ namespace Core.Score {
 
         void OnBallKilled(BallKilled ev) {
             _score += _ballScoreProvider.GetBallScore();
+            EventManager.Instance.Fire(new ScoreChanged(_score));
         }
     }
 }

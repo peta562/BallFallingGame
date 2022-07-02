@@ -1,10 +1,10 @@
 ﻿using Configs;
 
 namespace Core.Score {
-    public sealed class CommonBallScoreProvider : BallScoreProvider {
+    public sealed class ConfigBallScoreProvider : BallScoreProvider {
         readonly GameConfig _gameConfig;
         
-        public CommonBallScoreProvider(GameConfig gameConfig) {
+        public ConfigBallScoreProvider(GameConfig gameConfig) {
             _gameConfig = gameConfig;
         }
 

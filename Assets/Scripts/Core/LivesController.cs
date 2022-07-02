@@ -7,7 +7,9 @@ namespace Core {
         readonly GameConfig _gameConfig;
         
         int _lives;
-        
+
+        public int Lives => _lives;
+
         public LivesController(GameConfig gameConfig) {
             _gameConfig = gameConfig;
         }
@@ -24,6 +26,8 @@ namespace Core {
 
         void OnBallFell(BallFell ev) {
             _lives -= 1;
+            
+            EventManager.Instance.Fire(new LivesChanged(_lives));
         }
     }
 }

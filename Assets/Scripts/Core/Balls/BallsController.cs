@@ -7,18 +7,18 @@ using UnityEngine;
 
 namespace Core.Balls {
     public sealed class BallsController : BaseController {
-        readonly BallFactory _ballFactory;
         readonly GameConfig _gameConfig;
+        
+        BallFactory _ballFactory;
 
         List<Ball> _balls = new List<Ball>();
 
-        Vector2 stageDimensions;
+        Vector2 _stageDimensions;
         float _ballSpawnDeltaTime;
         Camera _camera;
 
-        public BallsController(GameConfig gameConfig, BallFactory ballFactory) {
+        public BallsController(GameConfig gameConfig) {
             _gameConfig = gameConfig;
-            _ballFactory = ballFactory;
         }
         
         public override void Init() {
@@ -28,10 +28,14 @@ namespace Core.Balls {
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
         }
 
+        public void ChangeFactory(BallFactory ballFactory) {
+            _ballFactory = ballFactory;
+        }
+
         public override void Update() {
             _ballSpawnDeltaTime += Time.deltaTime;
         
-            stageDimensions = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+            _stageDimensions = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
             
             CheckForSpawn();
             CheckBallsOutOfBounds();
@@ -54,12 +58,12 @@ namespace Core.Balls {
 
         void CheckBallsOutOfBounds() {
             for (int i = _balls.Count - 1; i >= 0; i--) {
-                _balls[i].CheckOutOfBounds(stageDimensions);
+                _balls[i].CheckOutOfBounds(_stageDimensions);
             }
         }
 
         void SpawnBall() {
-            var ball = _ballFactory.GetBall(stageDimensions);
+            var ball = _ballFactory.GetBall(_stageDimensions);
             _balls.Add(ball);
         }
 
