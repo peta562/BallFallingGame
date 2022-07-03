@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Core.Pause;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Core.Balls {

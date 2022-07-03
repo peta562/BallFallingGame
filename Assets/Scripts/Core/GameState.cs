@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Configs;
 using Core.Balls;
+using Core.Pause;
 using Core.Score;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Core {
     public class GameState {
         public static GameState Instance { get; private set; }
         readonly List<BaseController> _controllers = new List<BaseController>();
+        
+        public PauseManager PauseManager { get; }
         
         public BallsController BallsController { get; private set; }
         public LivesController LivesController { get; private set; }
@@ -17,7 +20,7 @@ namespace Core {
         public BallConfig BallConfig { get; private set; }
         
         GameState() {
-            //add pause
+            PauseManager = new PauseManager();
 
             LoadConfigs();
             AddControllers();

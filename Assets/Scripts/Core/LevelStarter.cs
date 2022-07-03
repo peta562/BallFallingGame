@@ -11,6 +11,8 @@ namespace Core {
         [SerializeField] LevelUI LevelUi;
 
         readonly List<BaseController> _controllers = new List<BaseController>();
+        
+        bool IsPaused => GameState.Instance.PauseManager.IsPaused;
 
         void Awake() {
             var gameState = GameState.Instance;
@@ -26,7 +28,6 @@ namespace Core {
         }
 
         void AddControllers(GameState gameState) {
-
             _controllers.Add(gameState.BallsController);
             gameState.BallsController.ChangeFactory(BallFactory);
             
@@ -41,6 +42,10 @@ namespace Core {
         }
 
         void Update() {
+            if ( IsPaused ) {
+                return;
+            }
+            
             foreach (var controller in _controllers) {
                 controller.Update();
             }
