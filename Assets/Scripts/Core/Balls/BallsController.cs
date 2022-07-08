@@ -8,10 +8,9 @@ using UnityEngine;
 namespace Core.Balls {
     public sealed class BallsController : BaseController {
         readonly GameConfig _gameConfig;
+        readonly List<Ball> _balls = new List<Ball>();
         
         BallFactory _ballFactory;
-
-        List<Ball> _balls = new List<Ball>();
 
         Vector2 _stageDimensions;
         float _ballSpawnDeltaTime;

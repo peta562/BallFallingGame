@@ -22,14 +22,13 @@ namespace Core.Balls.BallEntity {
 
             BallView.Init(sprite, color);
             BallEffect.Init(color, scale);
-
-            BallFellDetector.OnBallFell += OnBallFell;
-            BallClickHandler.OnBallClicked += OnBallClick;
+            BallFellDetector.Init(OnBallFell);
+            BallClickHandler.Init(OnBallClick);
         }
 
         public void DeInit() {
-            BallFellDetector.OnBallFell -= OnBallFell;
-            BallClickHandler.OnBallClicked -= OnBallClick;
+            BallFellDetector.DeInit();
+            BallClickHandler.DeInit();
         }
 
         public void Move(float speed) {

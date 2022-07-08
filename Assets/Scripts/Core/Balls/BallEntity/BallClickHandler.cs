@@ -1,21 +1,28 @@
 ﻿using System;
-using Core.Pause;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Core.Balls {
     [RequireComponent(typeof(CircleCollider2D))]
     public sealed class BallClickHandler : MonoBehaviour, IPointerDownHandler {
-        public event Action OnBallClicked;
+        Action _onBallClicked;
 
         bool IsPaused => GameState.Instance.PauseManager.IsPaused;
+
+        public void Init(Action onBallClicked) {
+            _onBallClicked = onBallClicked;
+        }
+
+        public void DeInit() {
+            _onBallClicked = null;
+        }
         
         public void OnPointerDown(PointerEventData eventData) {
             if ( IsPaused ) {
                 return;
             } 
             
-            OnBallClicked?.Invoke();
+            _onBallClicked?.Invoke();
         }
     }
 }
