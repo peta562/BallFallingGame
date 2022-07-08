@@ -20,7 +20,7 @@ namespace Core {
             var gameState = GameState.Instance;
             
             _windowManager = new WindowManager();
-            _windowManager.Init(WindowHolder.Windows);
+            _windowManager.Init(WindowHolder.Windows, WindowHolder.WindowBackground);
             
             AddControllers(gameState);
             InitControllers();

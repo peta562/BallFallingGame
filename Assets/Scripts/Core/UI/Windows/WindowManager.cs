@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Core.UI.Windows {
     public sealed class WindowManager {
         readonly Stack<BaseWindow> _activeWindows = new Stack<BaseWindow>();
         
         List<BaseWindow> _windows;
+        WindowBackground _windowBackground;
         BaseWindow _currentWindow;
         
-        public void Init(List<BaseWindow> windows) {
+        public void Init(List<BaseWindow> windows, WindowBackground windowBackground) {
             _windows = windows;
+            _windowBackground = windowBackground;
 
             foreach (var window in _windows) {
-                window.Init(TryShowLast);
+                window.Init(OnHide);
             }
         }
 
@@ -21,6 +24,7 @@ namespace Core.UI.Windows {
             }
             
             _windows = null;
+            _windowBackground = null;
         }
 
         public void ShowWindow<T>(bool remember = true) where T : BaseWindow {
@@ -34,6 +38,7 @@ namespace Core.UI.Windows {
                         _currentWindow.Hide();
                     }
 
+                    _windowBackground.Show();
                     tWindow.Show();
                     _currentWindow = tWindow;
                     return;
@@ -50,13 +55,21 @@ namespace Core.UI.Windows {
                 _currentWindow.Hide();
             }
 
+            _windowBackground.Show();
             window.Show();
             _currentWindow = window;
+        }
+
+        void OnHide() {
+            _windowBackground.Hide();
+            TryShowLast();
         }
 
         void TryShowLast() {
             if ( _activeWindows.Count != 0 ) {
                 Show(_activeWindows.Pop(), false);
+            } else {
+                _currentWindow = null;
             }
         }
     }
