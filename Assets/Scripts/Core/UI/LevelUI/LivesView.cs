@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Core.UI {
+namespace Core.UI.LevelUI {
     public sealed class LivesView : MonoBehaviour {
         [SerializeField] TMP_Text LivesText;
         

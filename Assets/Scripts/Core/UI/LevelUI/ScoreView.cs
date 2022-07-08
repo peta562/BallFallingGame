@@ -2,7 +2,7 @@
 using UnityEngine;
 using Utils;
 
-namespace Core.UI {
+namespace Core.UI.LevelUI {
     public sealed class ScoreView : MonoBehaviour {
         [SerializeField] TextCounterAnimation TextCounterAnimation;
         [SerializeField] TMP_Text ScoreText;

@@ -1,10 +1,12 @@
 ﻿using Core.EventBus;
 using Core.EventBus.Events;
 using Core.Score;
+using Core.UI.Windows;
+using Core.UI.Windows.Pause;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.UI {
+namespace Core.UI.LevelUI {
     public sealed class LevelUI : MonoBehaviour {
         [SerializeField] LivesView LivesView;
         [SerializeField] ScoreView ScoreView;
@@ -12,13 +14,13 @@ namespace Core.UI {
 
         LivesController _livesController;
         ScoreController _scoreController;
+        WindowManager _windowManager;
 
-        bool IsPaused => GameState.Instance.PauseManager.IsPaused;
-
-        public void Init(LivesController livesController, ScoreController scoreController) {
+        public void Init(LivesController livesController, ScoreController scoreController, WindowManager windowManager) {
             _livesController = livesController;
             _scoreController = scoreController;
-            
+            _windowManager = windowManager;
+
             LivesView.Init(_livesController.Lives);
             ScoreView.Init(_scoreController.Score);
             
@@ -29,6 +31,10 @@ namespace Core.UI {
         }
 
         public void DeInit() {
+            _scoreController = null;
+            _livesController = null;
+            _windowManager = null;
+            
             PauseButton.onClick.RemoveListener(OnPauseButtonClicked);
             
             EventManager.Instance.Unsubscribe<LivesChanged>(OnLivesChanged);
@@ -36,7 +42,7 @@ namespace Core.UI {
         }
 
         void OnPauseButtonClicked() {
-            GameState.Instance.PauseManager.SetPaused(!IsPaused);
+            _windowManager.ShowWindow<PauseWindow>();
         }
 
         void OnLivesChanged(LivesChanged ev) {
