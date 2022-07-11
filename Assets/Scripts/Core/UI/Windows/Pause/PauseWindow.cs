@@ -6,10 +6,9 @@ namespace Core.UI.Windows.Pause {
         [SerializeField] Button ContinueButton;
 
         public override void Show() {
+            GameState.Instance.PauseManager.SetPaused(true);
             ContinueButton.onClick.AddListener(Hide);
 
-            GameState.Instance.PauseManager.SetPaused(true);
-            
             base.Show();
         }
 

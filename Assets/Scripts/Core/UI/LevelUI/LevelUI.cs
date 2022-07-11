@@ -1,5 +1,6 @@
 ﻿using Core.EventBus;
 using Core.EventBus.Events;
+using Core.Lives;
 using Core.Score;
 using Core.UI.Windows;
 using Core.UI.Windows.Pause;

@@ -2,7 +2,7 @@
 using Core.EventBus;
 using Core.EventBus.Events;
 
-namespace Core {
+namespace Core.Lives {
     public sealed class LivesController : BaseController {
         readonly GameConfig _gameConfig;
         

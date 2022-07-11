@@ -5,14 +5,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Core.Balls {
-    public class BallFactory : MonoBehaviour {
+    public sealed class BallFactory : MonoBehaviour {
         const int InitialStockCount = 5;
 
-        public BallConfig _ballConfig;
-
+        BallConfig _ballConfig;
         ObjectPool<Ball> _objectPool;
 
-        void Awake() {
+        public void Init(BallConfig ballConfig) {
+            _ballConfig = ballConfig;
             _objectPool = new ObjectPool<Ball>(BallFactoryMethod, TurnOnBall, TurnOffBall, InitialStockCount);
         }
 

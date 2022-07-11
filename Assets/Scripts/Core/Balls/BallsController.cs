@@ -8,33 +8,33 @@ using UnityEngine;
 namespace Core.Balls {
     public sealed class BallsController : BaseController {
         readonly GameConfig _gameConfig;
+        readonly BallConfig _ballConfig;
         readonly List<Ball> _balls = new List<Ball>();
         
         BallFactory _ballFactory;
 
         Vector2 _stageDimensions;
         float _ballSpawnDeltaTime;
-        Camera _camera;
-
-        public BallsController(GameConfig gameConfig) {
+        
+        public BallsController(GameConfig gameConfig, BallConfig ballConfig) {
             _gameConfig = gameConfig;
+            _ballConfig = ballConfig;
         }
         
         public override void Init() {
-            _camera = Camera.main;
-            
             EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
         }
 
         public void ChangeFactory(BallFactory ballFactory) {
             _ballFactory = ballFactory;
+            _ballFactory.Init(_ballConfig);
         }
 
         public override void Update() {
             _ballSpawnDeltaTime += Time.deltaTime;
         
-            _stageDimensions = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+            _stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
             
             CheckForSpawn();
             CheckBallsOutOfBounds();

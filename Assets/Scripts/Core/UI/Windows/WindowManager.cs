@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core.UI.Windows {
@@ -27,7 +28,7 @@ namespace Core.UI.Windows {
             _windowBackground = null;
         }
 
-        public void ShowWindow<T>(bool remember = true) where T : BaseWindow {
+        public void ShowWindow<T>(Action<T> action = null, bool remember = true) where T : BaseWindow {
             foreach (var window in _windows) {
                 if ( window is T tWindow ) {
                     if ( _currentWindow != null ) {
@@ -39,6 +40,14 @@ namespace Core.UI.Windows {
                     }
 
                     _windowBackground.Show();
+                    
+                    if ( action != null ) {
+                        var component = tWindow.GetComponent<T>();
+                        if ( component != null ) {
+                            action.Invoke(component);
+                        }
+                    }
+                    
                     tWindow.Show();
                     _currentWindow = tWindow;
                     return;

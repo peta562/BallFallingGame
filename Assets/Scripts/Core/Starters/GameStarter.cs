@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Core {
+namespace Core.Starters {
     public class GameStarter : MonoBehaviour {
         void Awake() {
             GameState.TryCreate();
@@ -10,7 +10,7 @@ namespace Core {
         }
 
         void GoToMainMenuScene() {
-            SceneManager.LoadScene("Level");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

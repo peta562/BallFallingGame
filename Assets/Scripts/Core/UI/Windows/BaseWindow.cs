@@ -12,7 +12,8 @@ namespace Core.UI.Windows {
         RectTransform _rectTransform;
         CanvasGroup _canvasGroup;
         Action _onHideAction;
-        
+        Sequence _sequence;
+
         public void Init(Action onHideAction) {
 	        _rectTransform = GetComponent<RectTransform>();
 	        _canvasGroup = GetComponent<CanvasGroup>();
@@ -38,19 +39,21 @@ namespace Core.UI.Windows {
         }
 
         void PlayShowAnimation() {
-	        var seq = GetShowAnimation();
-	        seq.Play();
+	        _sequence.Kill();
+	        _sequence = GetShowAnimation();
+	        _sequence.Play();
         }
 
         void PlayHideAnimation() {
-	        var seq = GetHideAnimation();
-	        seq.Play();
+	        _sequence.Kill();
+	        _sequence = GetHideAnimation();
+	        _sequence.Play();
         }
 
         #region Show Animation
 
         const float ShowFadeTime       = 0.255f;
-        const float ShowMoveTime       = 0.5f;
+        const float ShowMoveTime       = 0.25f;
         const float ShowRotateTime     = 0.5f;
         const float ShowOffset         = 3000;
         const float ShowShakePosTime   = 0.35f;

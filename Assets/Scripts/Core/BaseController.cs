@@ -1,7 +1,9 @@
 ﻿namespace Core {
-    public abstract class BaseController{
-        public virtual void Init() {}
-        public virtual void Update() {}
-        public virtual void DeInit() {}
+    public abstract class BaseController {
+        public abstract void Init();
+
+        public virtual void Update() { }
+
+        public abstract void DeInit();
     }
 }
