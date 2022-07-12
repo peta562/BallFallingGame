@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using Configs;
+﻿using Configs;
 using Core.EventBus;
 using Core.EventBus.Events;
 using Core.UI.Windows;
@@ -16,37 +15,35 @@ namespace Core.Level {
         }
         
         public override void Init() {
-            EventManager.Instance.Subscribe<LivesChanged>(this, OnLivesChanged);
-            EventManager.Instance.Subscribe<ScoreChanged>(this, OnScoreChanged);
         }
 
         public override void DeInit() {
-            EventManager.Instance.Unsubscribe<LivesChanged>(OnLivesChanged);
-            EventManager.Instance.Unsubscribe<ScoreChanged>(OnScoreChanged);
         }
         
         public void StartLevel(LevelInfo levelInfo) {
             _levelInfo = levelInfo;
         }
 
-        void OnScoreChanged(ScoreChanged ev) {
-            if ( ev.Score >= _levelInfo.TargetScore ) {
+        public void CheckForWin(int score) {
+            if ( score >= _levelInfo.TargetScore ) {
                 WinLevel();
             }
         }
 
-        void OnLivesChanged(LivesChanged ev) {
-            if ( ev.Lives <= 0 ) {
+        public void CheckForLose(int lives) {
+            if ( lives <= 0 ) {
                 LoseLevel();
             }
         }
         
         void WinLevel() {
+            EventManager.Instance.Fire(new LevelWin());
             FinishLevel();
             _windowManager.ShowWindow<WinWindow>();
         }
 
         void LoseLevel() {
+            EventManager.Instance.Fire(new LevelLose());
             FinishLevel();
             _windowManager.ShowWindow<LoseWindow>();
         }

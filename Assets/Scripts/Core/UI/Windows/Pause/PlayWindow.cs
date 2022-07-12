@@ -9,6 +9,7 @@ using UnityEngine.UI;
 namespace Core.UI.Windows.Pause {
     public sealed class PlayWindow : BaseWindow {
         [SerializeField] Button PlayButton;
+        [SerializeField] TMP_Text LevelIdText;
         [SerializeField] TMP_Text TargetScoreText; 
 
         ScoreController _scoreController;
@@ -23,6 +24,8 @@ namespace Core.UI.Windows.Pause {
         
         public override void Show() {
             TargetScoreText.text = $"Your target: {_levelInfo.TargetScore}";
+            LevelIdText.text = $"Current level: {_levelInfo.Id}";
+            
             PlayButton.onClick.AddListener(OnPlayButtonClicked);
 
             base.Show();

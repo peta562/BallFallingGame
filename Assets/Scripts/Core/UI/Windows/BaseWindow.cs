@@ -22,6 +22,9 @@ namespace Core.UI.Windows {
         }
 
         public void DeInit() {
+	        _rectTransform = null;
+	        _canvasGroup = null;
+	        
             _onHideAction = null;
         }
         

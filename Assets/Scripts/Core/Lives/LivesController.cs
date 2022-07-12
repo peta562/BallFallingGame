@@ -16,15 +16,12 @@ namespace Core.Lives {
         
         public override void Init() {
             _lives = _gameConfig.Lives;
-            
-            EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
         }
 
         public override void DeInit() {
-            EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
         }
 
-        void OnBallFell(BallFell ev) {
+        public void ReduceLive() {
             _lives -= 1;
             
             EventManager.Instance.Fire(new LivesChanged(_lives));

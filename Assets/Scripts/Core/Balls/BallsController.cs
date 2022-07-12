@@ -23,9 +23,7 @@ namespace Core.Balls {
         }
         
         public override void Init() {
-            EventManager.Instance.Subscribe<LevelFinished>(this, OnLevelFinished);
-            EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
-            EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
+            
         }
 
         public void ChangeFactory(BallFactory ballFactory) {
@@ -44,9 +42,30 @@ namespace Core.Balls {
         }
 
         public override void DeInit() {
-            EventManager.Instance.Unsubscribe<LevelFinished>(OnLevelFinished);
-            EventManager.Instance.Unsubscribe<BallClicked>(OnBallClicked);
-            EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
+            
+        }
+        
+        public void HandleBallClick(Ball ball) {
+            ball.ApplyDamage(_gameConfig.Damage);
+            
+            if ( ball.Health <= 0 ) {
+                ball.PlayDieEffect();
+                RemoveBall(ball);
+                
+                EventManager.Instance.Fire(new BallKilled(ball));
+            } else {
+                ball.PlayHitEffect();
+            }
+        }
+
+        public void HandleBallFall(Ball ball) {
+            RemoveBall(ball);
+        }
+
+        public void FinishLevel() {
+            for (var i = _balls.Count - 1; i >= 0; i--) {
+                RemoveBall(_balls[i]);
+            }
         }
 
         void CheckForSpawn() {
@@ -72,31 +91,6 @@ namespace Core.Balls {
         void MoveBalls() {
             for (var i = _balls.Count - 1; i >= 0; i--) {
                 _balls[i].Move(_gameConfig.Speed);
-            }
-        }
-
-        void OnBallClicked(BallClicked ev) {
-            var ball = ev.Ball;
-            
-            ball.ApplyDamage(_gameConfig.Damage);
-            
-            if ( ball.Health <= 0 ) {
-                ball.PlayDieEffect();
-                RemoveBall(ball);
-                
-                EventManager.Instance.Fire(new BallKilled(ball));
-            } else {
-                ball.PlayHitEffect();
-            }
-        }
-
-        void OnBallFell(BallFell ev) {
-            RemoveBall(ev.Ball);
-        }
-
-        void OnLevelFinished(LevelFinished ev) {
-            for (var i = _balls.Count - 1; i >= 0; i--) {
-                RemoveBall(_balls[i]);
             }
         }
 

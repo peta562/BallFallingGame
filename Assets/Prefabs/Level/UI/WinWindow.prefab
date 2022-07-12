@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4272999105080260149}
   - component: {fileID: 4514625641308919057}
-  - component: {fileID: 7841326126795959467}
   - component: {fileID: 7659681564854154562}
   m_Layer: 5
   m_Name: Text
@@ -46,21 +45,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613590267993299326}
   m_CullTransparentMesh: 1
---- !u!114 &7841326126795959467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613590267993299326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76207e9676f248a181282d43c590c3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Text: {fileID: 7659681564854154562}
-  CountFPS: 30
-  Duration: 1
 --- !u!114 &7659681564854154562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -103.9}
+  m_AnchoredPosition: {x: 0, y: -106.9}
   m_SizeDelta: {x: 142.18, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &983306386217189271

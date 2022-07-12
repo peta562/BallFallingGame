@@ -13,7 +13,7 @@ namespace Core.Progress {
         readonly LevelController _levelController;
         readonly WindowManager _windowManager;
         
-        int _currentLevelId;
+        int _currentLevelId = 1;
 
         public ProgressController(ProgressConfig progressConfig, ScoreController scoreController,
             LevelController levelController, WindowManager windowManager) {
@@ -24,13 +24,9 @@ namespace Core.Progress {
         }
 
         public override void Init() {
-            EventManager.Instance.Subscribe<LevelLose>(this, OnLevelLose);
-            EventManager.Instance.Subscribe<LevelWin>(this, OnLevelWin);
         }
 
         public override void DeInit() {
-            EventManager.Instance.Unsubscribe<LevelLose>(OnLevelLose);
-            EventManager.Instance.Unsubscribe<LevelWin>(OnLevelWin);
         }
         
         public void TryStartLevel() {
@@ -52,12 +48,11 @@ namespace Core.Progress {
             }
         }
 
-        void OnLevelLose(LevelLose ev) {
+        public void LoseLevel() {
             
         }
 
-        void OnLevelWin(LevelWin ev) {
-            
+        public void WinLevel() {
             _currentLevelId++;
         }
     }    

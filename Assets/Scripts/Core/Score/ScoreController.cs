@@ -19,14 +19,12 @@ namespace Core.Score {
         
         public override void Init() {
             _score = 0;
-            EventManager.Instance.Subscribe<BallKilled>(this, OnBallKilled);
         }
 
         public override void DeInit() {
-            EventManager.Instance.Unsubscribe<BallKilled>(OnBallKilled);
         }
 
-        void OnBallKilled(BallKilled ev) {
+        public void AddScore() {
             _score += _ballScoreProvider.GetBallScore();
             EventManager.Instance.Fire(new ScoreChanged(_score));
         }
