@@ -1,4 +1,5 @@
 ﻿using Configs;
+using Core.Level;
 using Core.Score;
 using TMPro;
 using UnityEngine;
@@ -11,28 +12,31 @@ namespace Core.UI.Windows.Pause {
         [SerializeField] TMP_Text TargetScoreText; 
 
         ScoreController _scoreController;
+        LevelController _levelController;
         LevelInfo _levelInfo;
 
-        public void Init(ScoreController scoreController, LevelInfo levelInfo) {
+        public void Init(ScoreController scoreController, LevelController levelController, LevelInfo levelInfo) {
             _scoreController = scoreController;
+            _levelController = levelController;
             _levelInfo = levelInfo;
         }
         
         public override void Show() {
             TargetScoreText.text = $"Your target: {_levelInfo.TargetScore}";
-            PlayButton.onClick.AddListener(OnStartLevel);
+            PlayButton.onClick.AddListener(OnPlayButtonClicked);
 
             base.Show();
         }
 
         public override void Hide() {
-            PlayButton.onClick.RemoveListener(OnStartLevel);
+            PlayButton.onClick.RemoveListener(OnPlayButtonClicked);
 
             base.Hide();
         }
 
-        void OnStartLevel() {
+        void OnPlayButtonClicked() {
             Hide();
+            _levelController.StartLevel(_levelInfo);
             SceneManager.LoadScene("Level");
         }
     }

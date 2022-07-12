@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Core.UI.Windows.Pause {
-    public sealed class WinWindow : BaseWindow {
+    public sealed class LoseWindow : BaseWindow {
         [SerializeField] Button OkButton;
 
         public override void Show() {

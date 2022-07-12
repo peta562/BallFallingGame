@@ -8,13 +8,8 @@ namespace Core.EventBus {
 	
 	public sealed class Handler<T> : HandlerBase {
 		List<Action<T>> _actions = new List<Action<T>>(100);
-		List<Action<T>> _removed = new List<Action<T>>(100);
 
 		public void Subscribe(object watcher, Action<T> action) {
-			if ( _removed.Contains(action) ) {
-				_removed.Remove(action);
-			}
-
 			if ( !_actions.Contains(action) ) {
 				_actions.Add(action);
 			} else {
@@ -23,18 +18,14 @@ namespace Core.EventBus {
 		}
 
 		public void Unsubscribe(Action<T> action) {
-			var index = _actions.IndexOf(action);
-			if ( index >= 0 ) {
-				_removed.Add(_actions[index]);
+			if ( _actions.Contains(action) ) {
+				_actions.Remove(action);
 			}
 		}
 
 		public void Fire(T arg) {
 			for (var i = 0; i < _actions.Count; i++) {
 				var current = _actions[i];
-				if ( _removed.Contains(current) ) {
-					continue;
-				}
 
 				try {
 					current.Invoke(arg);

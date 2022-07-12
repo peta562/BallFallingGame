@@ -38,11 +38,12 @@ namespace Core.Starters {
         }
 
         void AddControllers(GameState gameState) {
-            _controllers.Add(gameState.BallsController);
-            gameState.BallsController.ChangeFactory(BallFactory);
-            
             _controllers.Add(gameState.LivesController);
             _controllers.Add(gameState.ScoreController);
+            _controllers.Add(gameState.LevelController);
+            
+            _controllers.Add(gameState.BallsController);
+            gameState.BallsController.ChangeFactory(BallFactory);
         }
         
         void InitControllers() {

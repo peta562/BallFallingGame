@@ -5,7 +5,7 @@ using Core.EventBus.Events;
 namespace Core.Score {
     public sealed class ScoreController : BaseController {
         readonly GameConfig _gameConfig;
-        readonly BallScoreProvider _ballScoreProvider;
+        readonly IBallScoreProvider _ballScoreProvider;
         
         int _score;
 
@@ -18,6 +18,7 @@ namespace Core.Score {
         }
         
         public override void Init() {
+            _score = 0;
             EventManager.Instance.Subscribe<BallKilled>(this, OnBallKilled);
         }
 

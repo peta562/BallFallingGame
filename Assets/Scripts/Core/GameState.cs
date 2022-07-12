@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Configs;
 using Core.Balls;
+using Core.Level;
 using Core.Progress;
 using Core.Lives;
 using Core.Pause;
@@ -22,6 +23,7 @@ namespace Core {
         public BallsController BallsController { get; private set; }
         public LivesController LivesController { get; private set; }
         public ScoreController ScoreController { get; private set; }
+        public LevelController LevelController { get; private set; }
         public ProgressController ProgressController { get; private set; }
 
         public GameConfig GameConfig { get; private set; }
@@ -43,10 +45,11 @@ namespace Core {
         }
         
         void AddControllers() {
-            BallsController = Add(new BallsController(GameConfig, BallConfig));
             LivesController = Add(new LivesController(GameConfig));
             ScoreController = Add(new ScoreController(GameConfig));
-            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, WindowManager));
+            LevelController = Add(new LevelController(WindowManager));
+            BallsController = Add(new BallsController(GameConfig, BallConfig));
+            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, WindowManager));
         }
         
         T Add<T>(T controller) where T : BaseController {

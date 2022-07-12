@@ -1,5 +1,5 @@
 ﻿namespace Core.Score {
-    public abstract class BallScoreProvider {
+    public interface IBallScoreProvider {
         public abstract int GetBallScore();
     }
 }

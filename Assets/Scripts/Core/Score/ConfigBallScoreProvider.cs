@@ -1,14 +1,14 @@
 ﻿using Configs;
 
 namespace Core.Score {
-    public sealed class ConfigBallScoreProvider : BallScoreProvider {
+    public sealed class ConfigBallScoreProvider : IBallScoreProvider {
         readonly GameConfig _gameConfig;
         
         public ConfigBallScoreProvider(GameConfig gameConfig) {
             _gameConfig = gameConfig;
         }
 
-        public override int GetBallScore() {
+        public int GetBallScore() {
             return _gameConfig.Score;
         }
     }

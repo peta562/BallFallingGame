@@ -3,6 +3,7 @@ using Configs;
 using Core.EventBus;
 using Core.Balls.BallEntity;
 using Core.EventBus.Events;
+using Core.Level;
 using UnityEngine;
 
 namespace Core.Balls {
@@ -22,6 +23,7 @@ namespace Core.Balls {
         }
         
         public override void Init() {
+            EventManager.Instance.Subscribe<LevelFinished>(this, OnLevelFinished);
             EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
         }
@@ -42,6 +44,7 @@ namespace Core.Balls {
         }
 
         public override void DeInit() {
+            EventManager.Instance.Unsubscribe<LevelFinished>(OnLevelFinished);
             EventManager.Instance.Unsubscribe<BallClicked>(OnBallClicked);
             EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
         }
@@ -56,7 +59,7 @@ namespace Core.Balls {
         }
 
         void CheckBallsOutOfBounds() {
-            for (int i = _balls.Count - 1; i >= 0; i--) {
+            for (var i = _balls.Count - 1; i >= 0; i--) {
                 _balls[i].CheckOutOfBounds(_stageDimensions);
             }
         }
@@ -67,7 +70,7 @@ namespace Core.Balls {
         }
 
         void MoveBalls() {
-            for (int i = _balls.Count - 1; i >= 0; i--) {
+            for (var i = _balls.Count - 1; i >= 0; i--) {
                 _balls[i].Move(_gameConfig.Speed);
             }
         }
@@ -89,6 +92,12 @@ namespace Core.Balls {
 
         void OnBallFell(BallFell ev) {
             RemoveBall(ev.Ball);
+        }
+
+        void OnLevelFinished(LevelFinished ev) {
+            for (var i = _balls.Count - 1; i >= 0; i--) {
+                RemoveBall(_balls[i]);
+            }
         }
 
         void RemoveBall(Ball ball) {
