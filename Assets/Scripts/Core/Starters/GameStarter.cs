@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Scenes;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Core.Starters {
@@ -10,7 +11,7 @@ namespace Core.Starters {
         }
 
         void GoToMainMenuScene() {
-            SceneManager.LoadScene("MainMenu");
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu.ToString());
         }
     }
 }

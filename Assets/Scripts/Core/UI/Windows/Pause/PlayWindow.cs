@@ -1,5 +1,6 @@
 ﻿using Configs;
 using Core.Level;
+using Core.Scenes;
 using Core.Score;
 using TMPro;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace Core.UI.Windows.Pause {
         void OnPlayButtonClicked() {
             Hide();
             _levelController.StartLevel(_levelInfo);
-            SceneManager.LoadScene("Level");
+            SceneLoader.Instance.LoadScene(SceneNames.Level.ToString());
         }
     }
 }

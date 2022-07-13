@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ProgressConfig
   m_EditorClassIdentifier: 
   Levels:
-  - Id: 0
-    TargetScore: 100
-    TargetBalls: 0
   - Id: 1
     TargetScore: 100
     TargetBalls: 0
   - Id: 2
-    TargetScore: 100
+    TargetScore: 250
+    TargetBalls: 0
+  - Id: 3
+    TargetScore: 400
     TargetBalls: 0
   IsEndlessGameplayEnabled: 0

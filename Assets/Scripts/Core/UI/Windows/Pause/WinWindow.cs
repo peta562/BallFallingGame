@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Scenes;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,11 +15,11 @@ namespace Core.UI.Windows.Pause {
         }
 
         public override void Hide() {
-            GameState.Instance.PauseManager.SetPaused(false);
             OkButton.onClick.RemoveListener(Hide);
 
             base.Hide();
-            SceneManager.LoadScene("MainMenu");
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu.ToString());
+            GameState.Instance.PauseManager.SetPaused(false);
         }
     }
 }
