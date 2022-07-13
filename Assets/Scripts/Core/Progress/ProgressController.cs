@@ -48,12 +48,10 @@ namespace Core.Progress {
             }
         }
 
-        public void LoseLevel() {
-            
-        }
-
-        public void WinLevel() {
-            _currentLevelId++;
+        public void FinishLevel(bool win) {
+            if ( win ) {
+                _currentLevelId++;
+            }
         }
     }    
 }

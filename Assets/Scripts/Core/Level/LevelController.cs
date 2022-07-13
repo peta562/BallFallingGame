@@ -37,19 +37,13 @@ namespace Core.Level {
         }
         
         void WinLevel() {
-            EventManager.Instance.Fire(new LevelWin());
-            FinishLevel();
+            EventManager.Instance.Fire(new LevelFinished(true));
             _windowManager.ShowWindow<WinWindow>();
         }
 
         void LoseLevel() {
-            EventManager.Instance.Fire(new LevelLose());
-            FinishLevel();
+            EventManager.Instance.Fire(new LevelFinished(false));
             _windowManager.ShowWindow<LoseWindow>();
-        }
-
-        void FinishLevel() {
-            EventManager.Instance.Fire(new LevelFinished());
         }
     }
 }

@@ -40,8 +40,6 @@ namespace Core.GameManagers {
                 controller.Init();
             }
             
-            EventManager.Instance.Subscribe<LevelLose>(this, OnLevelLose);
-            EventManager.Instance.Subscribe<LevelWin>(this, OnLevelWin);
             EventManager.Instance.Subscribe<LivesChanged>(this, OnLivesChanged);
             EventManager.Instance.Subscribe<ScoreChanged>(this, OnScoreChanged);
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
@@ -55,8 +53,6 @@ namespace Core.GameManagers {
                 controller.DeInit();
             }
             
-            EventManager.Instance.Unsubscribe<LevelLose>(OnLevelLose);
-            EventManager.Instance.Unsubscribe<LevelWin>(OnLevelWin);
             EventManager.Instance.Unsubscribe<LivesChanged>(OnLivesChanged);
             EventManager.Instance.Unsubscribe<ScoreChanged>(OnScoreChanged);
             EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
@@ -71,14 +67,6 @@ namespace Core.GameManagers {
             }
             
             _ballsController.Update();
-        }
-        
-        void OnLevelLose(LevelLose ev) {
-            _progressController.LoseLevel();
-        }
-
-        void OnLevelWin(LevelWin ev) {
-            _progressController.WinLevel();
         }
 
         void OnLivesChanged(LivesChanged ev) {
@@ -103,6 +91,7 @@ namespace Core.GameManagers {
         }
 
         void OnLevelFinished(LevelFinished ev) {
+            _progressController.FinishLevel(ev.Win);
             _ballsController.FinishLevel();
         }
     }
