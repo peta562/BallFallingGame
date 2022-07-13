@@ -8,8 +8,9 @@ namespace Core.Scenes {
 
         float _targetProgress;
         
-        public async void LoadScene(string sceneName) {
-            var scene = SceneManager.LoadSceneAsync(sceneName);
+        public async void LoadScene(SceneNames sceneName) {
+            var strSceneName = sceneName.ToString();
+            var scene = SceneManager.LoadSceneAsync(strSceneName);
             scene.allowSceneActivation = false;
 
             LoadingScreen.Init();

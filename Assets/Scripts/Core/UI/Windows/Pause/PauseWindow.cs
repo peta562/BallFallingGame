@@ -28,7 +28,7 @@ namespace Core.UI.Windows.Pause {
         void Exit() {
             Hide();
             EventManager.Instance.Fire(new LevelFinished(false));
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu.ToString());
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Configs;
-using Core.EventBus;
-using Core.EventBus.Events;
 using Core.Level;
 using Core.Score;
 using Core.UI.Windows;

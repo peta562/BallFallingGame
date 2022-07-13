@@ -18,7 +18,7 @@ namespace Core.UI.Windows.Pause {
             OkButton.onClick.RemoveListener(Hide);
 
             base.Hide();
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu.ToString());
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
             GameState.Instance.PauseManager.SetPaused(false);
         }
     }

@@ -41,7 +41,7 @@ namespace Core.UI.Windows.Pause {
         void OnPlayButtonClicked() {
             Hide();
             _levelController.StartLevel(_levelInfo);
-            SceneLoader.Instance.LoadScene(SceneNames.Level.ToString());
+            SceneLoader.Instance.LoadScene(SceneNames.Level);
         }
     }
 }

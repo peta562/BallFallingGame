@@ -11,7 +11,7 @@ namespace Core.Starters {
         }
 
         void GoToMainMenuScene() {
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu.ToString());
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
     }
 }
