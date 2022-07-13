@@ -1,6 +1,5 @@
 ﻿using Core.Scenes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Core.Starters {
     public class GameStarter : MonoBehaviour {
