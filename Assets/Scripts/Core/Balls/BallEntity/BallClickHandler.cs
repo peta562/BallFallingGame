@@ -7,7 +7,7 @@ namespace Core.Balls {
     public sealed class BallClickHandler : MonoBehaviour, IPointerDownHandler {
         Action _onBallClicked;
 
-        bool IsPaused => GameState.Instance.PauseManager.IsPaused;
+        bool IsPaused => GameContext.Instance.PauseManager.IsPaused;
 
         public void Init(Action onBallClicked) {
             _onBallClicked = onBallClicked;

@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Core.Starters {
     public class GameStarter : MonoBehaviour {
         void Awake() {
+            GameContext.TryCreate();
             GameState.TryCreate();
             
             GoToMainMenuScene();

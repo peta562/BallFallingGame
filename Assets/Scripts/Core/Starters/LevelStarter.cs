@@ -16,7 +16,7 @@ namespace Core.Starters {
         void Awake() {
             var gameState = GameState.Instance;
 
-            _windowManager = gameState.WindowManager;
+            _windowManager = GameContext.Instance.WindowManager;
             _windowManager.Init(WindowHolder.Windows, WindowHolder.WindowBackground);
 
             gameState.BallsController.ChangeFactory(BallFactory);

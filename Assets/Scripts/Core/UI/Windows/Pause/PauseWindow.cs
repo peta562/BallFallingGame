@@ -10,7 +10,7 @@ namespace Core.UI.Windows.Pause {
         [SerializeField] Button ExitButton;
 
         public override void Show() {
-            GameState.Instance.PauseManager.SetPaused(true);
+            GameContext.Instance.PauseManager.SetPaused(true);
             ContinueButton.onClick.AddListener(Hide);
             ExitButton.onClick.AddListener(Exit);
 
@@ -22,7 +22,7 @@ namespace Core.UI.Windows.Pause {
             ExitButton.onClick.RemoveListener(Exit);
             
             base.Hide();
-            GameState.Instance.PauseManager.SetPaused(false);
+            GameContext.Instance.PauseManager.SetPaused(false);
         }
 
         void Exit() {

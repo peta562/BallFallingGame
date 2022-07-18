@@ -6,7 +6,7 @@ namespace Core.Balls {
         [SerializeField] ParticleSystem _particleSystem;
 
         void Awake() {
-            GameState.Instance.PauseManager.Register(this);
+            GameContext.Instance.PauseManager.Register(this);
         }
         
         public void Play(Color color, float scale) {
@@ -18,7 +18,7 @@ namespace Core.Balls {
         }
 
         void OnDestroy() {
-            GameState.Instance.PauseManager.UnRegister(this);
+            GameContext.Instance.PauseManager.UnRegister(this);
         }
 
         void IPauseHandler.OnPauseChanged(bool isPaused) {

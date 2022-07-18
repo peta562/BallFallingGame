@@ -10,16 +10,13 @@ using Core.UI.Windows;
 using UnityEngine;
 
 namespace Core {
-    public class GameState {
+    public sealed class GameState {
         public static GameState Instance { get; private set; }
 
         const string ConfigsPath = "Configs";
         
         readonly List<BaseController> _controllers = new List<BaseController>();
-        
-        public PauseManager PauseManager { get; }
-        public WindowManager WindowManager { get; }
-        
+
         public BallsController BallsController { get; private set; }
         public LivesController LivesController { get; private set; }
         public ScoreController ScoreController { get; private set; }
@@ -31,8 +28,6 @@ namespace Core {
         public ProgressConfig ProgressConfig { get; private set; }
 
         GameState() {
-            PauseManager = new PauseManager();
-            WindowManager = new WindowManager();
 
             LoadConfigs();
             AddControllers();
@@ -47,9 +42,9 @@ namespace Core {
         void AddControllers() {
             LivesController = Add(new LivesController(GameConfig));
             ScoreController = Add(new ScoreController(GameConfig));
-            LevelController = Add(new LevelController(WindowManager));
+            LevelController = Add(new LevelController(GameContext.Instance.WindowManager));
             BallsController = Add(new BallsController(GameConfig, BallConfig));
-            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, WindowManager));
+            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, GameContext.Instance.WindowManager));
         }
         
         T Add<T>(T controller) where T : BaseController {

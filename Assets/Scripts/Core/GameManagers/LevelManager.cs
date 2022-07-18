@@ -17,7 +17,7 @@ namespace Core.GameManagers {
 
         readonly List<BaseController> _controllers = new List<BaseController>();
         
-        bool IsPaused => GameState.Instance.PauseManager.IsPaused;
+        bool IsPaused => GameContext.Instance.PauseManager.IsPaused;
 
         bool _isLevelActive;
 
