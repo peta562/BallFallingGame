@@ -6,7 +6,6 @@ using Core.Level;
 using Core.Lives;
 using Core.Progress;
 using Core.Score;
-using UnityEngine;
 
 namespace Core.GameManagers {
     public sealed class LevelManager {
@@ -19,6 +18,8 @@ namespace Core.GameManagers {
         readonly List<BaseController> _controllers = new List<BaseController>();
         
         bool IsPaused => GameState.Instance.PauseManager.IsPaused;
+
+        bool _isLevelActive;
 
         public LevelManager(ScoreController scoreController, LivesController livesController,
             ProgressController progressController, BallsController ballsController, LevelController levelController) {
@@ -36,6 +37,8 @@ namespace Core.GameManagers {
         }
 
         public void Init() {
+            _isLevelActive = true;
+            
             foreach (var controller in _controllers) {
                 controller.Init();
             }
@@ -62,7 +65,7 @@ namespace Core.GameManagers {
         }
 
         public void Update() {
-            if ( IsPaused ) {
+            if ( IsPaused || !_isLevelActive) {
                 return;
             }
             
@@ -91,6 +94,7 @@ namespace Core.GameManagers {
         }
 
         void OnLevelFinished(LevelFinished ev) {
+            _isLevelActive = false;
             _progressController.FinishLevel(ev.Win);
             _ballsController.FinishLevel();
         }

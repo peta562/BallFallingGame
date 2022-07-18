@@ -19,7 +19,7 @@ namespace Core.UI.MainMenuUI {
         }
 
         void OnPlayButtonClicked() {
-            _progressController.TryStartLevel();
+            _progressController.TryShowPlayWindow();
         }
     }
 }

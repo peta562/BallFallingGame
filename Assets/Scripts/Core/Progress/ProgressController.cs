@@ -27,22 +27,22 @@ namespace Core.Progress {
         public override void DeInit() {
         }
         
-        public void TryStartLevel() {
+        public void TryShowPlayWindow() {
+            LevelInfo currentLevelInfo = null;
             if ( _currentLevelId <= _progressConfig.MaxLevels ) {
-                LevelInfo currentLevelInfo = null;
                 foreach (var level in _progressConfig.Levels) {
                     if ( _currentLevelId == level.Id ) {
                         currentLevelInfo = level;
                         break;
                     }
                 }
+            }
 
-                if ( currentLevelInfo != null ) {
-                    _windowManager.ShowWindow<PlayWindow>(x => x.Init(_scoreController, _levelController, currentLevelInfo));
-                } else {
-                    _windowManager.ShowWindow<EndOfLevelsWindow>();  
-                }
-
+            if ( currentLevelInfo != null ) {
+                _windowManager.ShowWindow<PlayWindow>(x =>
+                    x.Init(_scoreController, _levelController, currentLevelInfo));
+            } else {
+                _windowManager.ShowWindow<EndOfLevelsWindow>();
             }
         }
 

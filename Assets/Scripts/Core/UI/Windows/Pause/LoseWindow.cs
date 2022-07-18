@@ -8,7 +8,6 @@ namespace Core.UI.Windows.Pause {
         [SerializeField] Button OkButton;
 
         public override void Show() {
-            GameState.Instance.PauseManager.SetPaused(true);
             OkButton.onClick.AddListener(Hide);
 
             base.Show();
@@ -19,7 +18,6 @@ namespace Core.UI.Windows.Pause {
 
             base.Hide();
             SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
-            GameState.Instance.PauseManager.SetPaused(false);
         }
     }
 }
