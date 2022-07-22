@@ -1,6 +1,7 @@
 ﻿using Configs;
 using Core.EventBus;
 using Core.EventBus.Events;
+using UnityEngine;
 
 namespace Core.Score {
     public sealed class ScoreController : BaseController {
@@ -8,7 +9,11 @@ namespace Core.Score {
         readonly IBallScoreProvider _ballScoreProvider;
         
         int _score;
-
+        bool _isMultiplyScoreEnabled;
+        int _multiplier;
+        float _multiplierTime;
+        float _deltaTime;
+        
         public int Score => _score;
 
         public ScoreController(GameConfig gameConfig) {
@@ -21,12 +26,45 @@ namespace Core.Score {
             _score = 0;
         }
 
+        public override void Update() {
+            if ( !_isMultiplyScoreEnabled ) {
+                return;
+            }
+            
+            _deltaTime += Time.deltaTime;
+
+            if ( _deltaTime >= _multiplierTime ) {
+                StopMultiplyScore();
+            }
+        }
+
         public override void DeInit() {
         }
 
         public void AddScore() {
-            _score += _ballScoreProvider.GetBallScore();
+            var addedScore = _ballScoreProvider.GetBallScore();
+
+            if ( _isMultiplyScoreEnabled ) {
+                addedScore *= _multiplier;
+            }
+            
+            _score += addedScore;
             EventManager.Instance.Fire(new ScoreChanged(_score));
+        }
+
+        public void StartMultiplyScore(int multiplier, float multiplierTime) {
+            _multiplier = multiplier;
+            _multiplierTime = multiplierTime;
+
+            _isMultiplyScoreEnabled = true;
+            EventManager.Instance.Fire(new ScoreMultiplyStarted(_multiplier, _multiplierTime));
+        }
+
+        void StopMultiplyScore() {
+            _isMultiplyScoreEnabled = false;
+            
+            _deltaTime = 0f;
+            EventManager.Instance.Fire(new ScoreMultiplyStopped());
         }
     }
 }

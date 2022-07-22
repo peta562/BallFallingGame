@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Balls;
+using Core.Bonuses;
+using Core.Bonuses.BonusEntity;
 using Core.EventBus;
 using Core.EventBus.Events;
 using Core.Level;
@@ -13,6 +15,7 @@ namespace Core.GameManagers {
         readonly LivesController _livesController;
         readonly ProgressController _progressController;
         readonly BallsController _ballsController;
+        readonly BonusController _bonusController;
         readonly LevelController _levelController;
 
         readonly List<BaseController> _controllers = new List<BaseController>();
@@ -22,17 +25,19 @@ namespace Core.GameManagers {
         bool _isLevelActive;
 
         public LevelManager(ScoreController scoreController, LivesController livesController,
-            ProgressController progressController, BallsController ballsController, LevelController levelController) {
+            ProgressController progressController, BallsController ballsController, BonusController bonusController, LevelController levelController) {
             _scoreController = scoreController;
             _livesController = livesController;
             _progressController = progressController;
             _ballsController = ballsController;
+            _bonusController = bonusController;
             _levelController = levelController;
             
             _controllers.Add(scoreController);
             _controllers.Add(livesController);
             _controllers.Add(progressController);
             _controllers.Add(ballsController);
+            _controllers.Add(bonusController);
             _controllers.Add(levelController);
         }
 
@@ -48,6 +53,9 @@ namespace Core.GameManagers {
             EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
             EventManager.Instance.Subscribe<BallKilled>(this, OnBallKilled);
             EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
+            EventManager.Instance.Subscribe<BonusFell>(this, OnBonusFell);
+            EventManager.Instance.Subscribe<BonusKilled>(this, OnBonusKilled);
+            EventManager.Instance.Subscribe<BonusClicked>(this, OnBonusClicked);
             EventManager.Instance.Subscribe<LevelFinished>(this, OnLevelFinished);
         }
 
@@ -61,6 +69,9 @@ namespace Core.GameManagers {
             EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
             EventManager.Instance.Unsubscribe<BallKilled>(OnBallKilled);
             EventManager.Instance.Unsubscribe<BallClicked>(OnBallClicked);
+            EventManager.Instance.Unsubscribe<BonusFell>(OnBonusFell);
+            EventManager.Instance.Unsubscribe<BonusKilled>(OnBonusKilled);
+            EventManager.Instance.Unsubscribe<BonusClicked>(OnBonusClicked);
             EventManager.Instance.Unsubscribe<LevelFinished>(OnLevelFinished);
         }
 
@@ -69,7 +80,9 @@ namespace Core.GameManagers {
                 return;
             }
             
-            _ballsController.Update();
+            foreach (var controller in _controllers) {
+                controller.Update();
+            }
         }
 
         void OnLivesChanged(LivesChanged ev) {
@@ -87,16 +100,51 @@ namespace Core.GameManagers {
 
         void OnBallKilled(BallKilled ev) {
             _scoreController.AddScore();
+            _ballsController.HandleBallKill(ev.Ball);
         }
 
         void OnBallClicked(BallClicked ev) {
             _ballsController.HandleBallClick(ev.Ball);
+        }
+        
+        void OnBonusFell(BonusFell ev) {
+            _bonusController.HandleBonusFall(ev.Bonus);
+        }
+
+        void OnBonusKilled(BonusKilled ev) {
+            switch (ev.Bonus.BonusType) {
+                case BonusType.KillAllBalls:
+                    var killAllBallsBonus = ev.Bonus as KillAllBallsBonus;
+                    if ( killAllBallsBonus != null ) {
+                        _ballsController.RemoveAllBalls();
+                    }
+                    break;
+                case BonusType.AddLive:
+                    var addLiveBonus = ev.Bonus as AddLiveBonus;
+                    if ( addLiveBonus != null ) {
+                        _livesController.AddLives(addLiveBonus.LivesToAdd);
+                    }
+                    break;
+                case BonusType.MultiplyScore:
+                    var multiplyScoreBonus = ev.Bonus as MultiplyScoreBonus;
+                    if ( multiplyScoreBonus != null ) {
+                        _scoreController.StartMultiplyScore(multiplyScoreBonus.Multiplier, multiplyScoreBonus.MultiplierTime);
+                    }
+                    break;
+            }
+            
+            _bonusController.HandleBonusKill(ev.Bonus);
+        }
+
+        void OnBonusClicked(BonusClicked ev) {
+            _bonusController.HandleBonusClick(ev.Bonus);
         }
 
         void OnLevelFinished(LevelFinished ev) {
             _isLevelActive = false;
             _progressController.FinishLevel(ev.Win);
             _ballsController.FinishLevel();
+            _bonusController.FinishLevel();
         }
     }
 }

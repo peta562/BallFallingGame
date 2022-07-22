@@ -15,7 +15,7 @@ namespace Core.Lives {
         }
         
         public override void Init() {
-            _lives = _gameConfig.Lives;
+            _lives = _gameConfig.MaxLives;
         }
 
         public override void DeInit() {
@@ -23,6 +23,16 @@ namespace Core.Lives {
 
         public void ReduceLive() {
             _lives -= 1;
+            
+            EventManager.Instance.Fire(new LivesChanged(_lives));
+        }
+
+        public void AddLives(int lives) {
+            if ( _lives + lives >= _gameConfig.MaxLives ) {
+                _lives = _gameConfig.MaxLives;
+            } else {
+                _lives += lives;
+            }
             
             EventManager.Instance.Fire(new LivesChanged(_lives));
         }

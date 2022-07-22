@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Core.ObjectPool {
-    public class ObjectPool<T> {
+    public sealed class ObjectPool<T> {
         readonly List<T> _currentStock;
         readonly Func<T> _factoryMethod;
 

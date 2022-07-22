@@ -3,7 +3,6 @@ using Configs;
 using Core.EventBus;
 using Core.Balls.BallEntity;
 using Core.EventBus.Events;
-using Core.Level;
 using UnityEngine;
 
 namespace Core.Balls {
@@ -25,6 +24,10 @@ namespace Core.Balls {
         public override void Init() {
             
         }
+        
+        public override void DeInit() {
+            
+        }
 
         public void ChangeFactory(BallFactory ballFactory) {
             _ballFactory = ballFactory;
@@ -41,21 +44,19 @@ namespace Core.Balls {
             MoveBalls();
         }
 
-        public override void DeInit() {
-            
-        }
-        
         public void HandleBallClick(Ball ball) {
             ball.ApplyDamage(_gameConfig.Damage);
             
             if ( ball.Health <= 0 ) {
-                ball.PlayDieEffect();
-                RemoveBall(ball);
-                
                 EventManager.Instance.Fire(new BallKilled(ball));
             } else {
                 ball.PlayHitEffect();
             }
+        }
+
+        public void HandleBallKill(Ball ball) {
+            ball.PlayDieEffect();
+            RemoveBall(ball);
         }
 
         public void HandleBallFall(Ball ball) {
@@ -65,6 +66,12 @@ namespace Core.Balls {
         public void FinishLevel() {
             for (var i = _balls.Count - 1; i >= 0; i--) {
                 RemoveBall(_balls[i]);
+            }
+        }
+        
+        public void RemoveAllBalls() {
+            for (var i = _balls.Count - 1; i >= 0; i--) {
+                HandleBallKill(_balls[i]);
             }
         }
 
@@ -90,7 +97,7 @@ namespace Core.Balls {
 
         void MoveBalls() {
             for (var i = _balls.Count - 1; i >= 0; i--) {
-                _balls[i].Move(_gameConfig.Speed);
+                _balls[i].Move(_gameConfig.BallSpeed);
             }
         }
 

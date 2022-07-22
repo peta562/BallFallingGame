@@ -52,7 +52,7 @@ MonoBehaviour:
   BallView: {fileID: 265474128069213827}
   BallEffect: {fileID: 1263665941457427645}
   BallFellDetector: {fileID: 6717599678830629416}
-  BallClickHandler: {fileID: 2175295914980929310}
+  clickHandler: {fileID: 2175295914980929310}
 --- !u!114 &8102621984513228103
 MonoBehaviour:
   m_ObjectHideFlags: 0

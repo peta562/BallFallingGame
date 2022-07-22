@@ -8,7 +8,7 @@ namespace Core.Balls.BallEntity {
         [SerializeField] BallView BallView;
         [SerializeField] BallEffect BallEffect;
         [SerializeField] BallFellDetector BallFellDetector;
-        [SerializeField] BallClickHandler BallClickHandler;
+        [SerializeField] ClickHandler clickHandler;
 
         float _health;
 
@@ -23,12 +23,14 @@ namespace Core.Balls.BallEntity {
             BallView.Init(sprite, color);
             BallEffect.Init(color, scale);
             BallFellDetector.Init(OnBallFell);
-            BallClickHandler.Init(OnBallClick);
+            
+            clickHandler.OnClick += OnBallClick;
         }
 
         public void DeInit() {
             BallFellDetector.DeInit();
-            BallClickHandler.DeInit();
+            
+            clickHandler.OnClick -= OnBallClick;
         }
 
         public void Move(float speed) {

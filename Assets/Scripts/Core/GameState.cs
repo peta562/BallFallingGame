@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Configs;
 using Core.Balls;
+using Core.Bonuses;
 using Core.Level;
 using Core.Progress;
 using Core.Lives;
@@ -18,6 +19,7 @@ namespace Core {
         readonly List<BaseController> _controllers = new List<BaseController>();
 
         public BallsController BallsController { get; private set; }
+        public BonusController BonusController { get; private set; }
         public LivesController LivesController { get; private set; }
         public ScoreController ScoreController { get; private set; }
         public LevelController LevelController { get; private set; }
@@ -25,6 +27,7 @@ namespace Core {
 
         public GameConfig GameConfig { get; private set; }
         public BallConfig BallConfig { get; private set; }
+        public BonusConfig BonusConfig { get; private set; }
         public ProgressConfig ProgressConfig { get; private set; }
 
         GameState() {
@@ -36,6 +39,7 @@ namespace Core {
         void LoadConfigs() {
             GameConfig = Resources.Load<GameConfig>($"{ConfigsPath}/GameConfig");
             BallConfig = Resources.Load<BallConfig>($"{ConfigsPath}/BallConfig");
+            BonusConfig = Resources.Load<BonusConfig>($"{ConfigsPath}/BonusConfig");
             ProgressConfig = Resources.Load<ProgressConfig>($"{ConfigsPath}/ProgressConfig");
         }
         
@@ -44,6 +48,7 @@ namespace Core {
             ScoreController = Add(new ScoreController(GameConfig));
             LevelController = Add(new LevelController(GameContext.Instance.WindowManager));
             BallsController = Add(new BallsController(GameConfig, BallConfig));
+            BonusController = Add(new BonusController(GameConfig, BonusConfig));
             ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, GameContext.Instance.WindowManager));
         }
         

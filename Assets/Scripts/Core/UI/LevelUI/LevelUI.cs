@@ -29,6 +29,8 @@ namespace Core.UI.LevelUI {
             
             EventManager.Instance.Subscribe<LivesChanged>(this, OnLivesChanged);
             EventManager.Instance.Subscribe<ScoreChanged>(this, OnScoreChanged);
+            EventManager.Instance.Subscribe<ScoreMultiplyStarted>(this, OnScoreMultiplyStarted);
+            EventManager.Instance.Subscribe<ScoreMultiplyStopped>(this, OnScoreMultiplyStopped);
         }
 
         public void DeInit() {
@@ -40,6 +42,8 @@ namespace Core.UI.LevelUI {
             
             EventManager.Instance.Unsubscribe<LivesChanged>(OnLivesChanged);
             EventManager.Instance.Unsubscribe<ScoreChanged>(OnScoreChanged);
+            EventManager.Instance.Unsubscribe<ScoreMultiplyStarted>(OnScoreMultiplyStarted);
+            EventManager.Instance.Unsubscribe<ScoreMultiplyStopped>(OnScoreMultiplyStopped);
         }
 
         void OnPauseButtonClicked() {
@@ -54,5 +58,12 @@ namespace Core.UI.LevelUI {
             ScoreView.UpdateScore(ev.Score);
         }
 
+        void OnScoreMultiplyStarted(ScoreMultiplyStarted ev) {
+            ScoreView.StartMultiplyScore(ev.Multiplier, ev.MultiplierTime);
+        }
+
+        void OnScoreMultiplyStopped(ScoreMultiplyStopped ev) {
+            ScoreView.StopMultiplyScore();
+        }
     }
 }
