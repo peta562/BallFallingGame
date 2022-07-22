@@ -1,11 +1,13 @@
 ﻿using System;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.UI.Windows {
     public abstract class BaseWindow : MonoBehaviour {
-        [SerializeField] Button CloseButton;
+	    [SerializeField] Button CloseButtonPrefab;
+        [SerializeField] RectTransform CloseButtonRoot;
         [SerializeField] ShowAnimationType ShowAnimation;
         [SerializeField] HideAnimationType HideAnimation;
 
@@ -13,12 +15,15 @@ namespace Core.UI.Windows {
         CanvasGroup _canvasGroup;
         Action _onHideAction;
         Sequence _sequence;
+        Button _closeButton;
 
         public void Init(Action onHideAction) {
 	        _rectTransform = GetComponent<RectTransform>();
 	        _canvasGroup = GetComponent<CanvasGroup>();
 	        
             _onHideAction = onHideAction;
+
+            _closeButton = Instantiate(CloseButtonPrefab, CloseButtonRoot);
         }
 
         public void DeInit() {
@@ -26,16 +31,18 @@ namespace Core.UI.Windows {
 	        _canvasGroup = null;
 	        
             _onHideAction = null;
+            
+            Destroy(_closeButton);
         }
         
         public virtual void Show() {
-            CloseButton.onClick.AddListener(Hide);
+	        _closeButton.onClick.AddListener(Hide);
             gameObject.SetActive(true);
             PlayShowAnimation();
         }
 
         public virtual void Hide() {
-            CloseButton.onClick.RemoveListener(Hide);
+	        _closeButton.onClick.RemoveListener(Hide);
             PlayHideAnimation();
             gameObject.SetActive(false);
             _onHideAction?.Invoke();

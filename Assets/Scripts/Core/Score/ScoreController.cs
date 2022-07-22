@@ -55,6 +55,7 @@ namespace Core.Score {
         public void StartMultiplyScore(int multiplier, float multiplierTime) {
             _multiplier = multiplier;
             _multiplierTime = multiplierTime;
+            _deltaTime = 0f;
 
             _isMultiplyScoreEnabled = true;
             EventManager.Instance.Fire(new ScoreMultiplyStarted(_multiplier, _multiplierTime));
@@ -63,7 +64,6 @@ namespace Core.Score {
         void StopMultiplyScore() {
             _isMultiplyScoreEnabled = false;
             
-            _deltaTime = 0f;
             EventManager.Instance.Fire(new ScoreMultiplyStopped());
         }
     }
