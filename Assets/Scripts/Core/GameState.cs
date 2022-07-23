@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using Configs;
-using Core.Balls;
-using Core.Bonuses;
 using Core.Level;
 using Core.Progress;
 using Core.Lives;
-using Core.Pause;
+using Core.PlayableObjects;
 using Core.Score;
-using Core.UI.Windows;
 using UnityEngine;
 
 namespace Core {
@@ -26,8 +23,7 @@ namespace Core {
         public ProgressController ProgressController { get; private set; }
 
         public GameConfig GameConfig { get; private set; }
-        public BallConfig BallConfig { get; private set; }
-        public BonusConfig BonusConfig { get; private set; }
+        public PlayableObjectsConfig PlayableObjectsConfig { get; private set; }
         public ProgressConfig ProgressConfig { get; private set; }
 
         GameState() {
@@ -38,8 +34,7 @@ namespace Core {
 
         void LoadConfigs() {
             GameConfig = Resources.Load<GameConfig>($"{ConfigsPath}/GameConfig");
-            BallConfig = Resources.Load<BallConfig>($"{ConfigsPath}/BallConfig");
-            BonusConfig = Resources.Load<BonusConfig>($"{ConfigsPath}/BonusConfig");
+            PlayableObjectsConfig = Resources.Load<PlayableObjectsConfig>($"{ConfigsPath}/PlayableObjectsConfig");
             ProgressConfig = Resources.Load<ProgressConfig>($"{ConfigsPath}/ProgressConfig");
         }
         
@@ -47,8 +42,8 @@ namespace Core {
             LivesController = Add(new LivesController(GameConfig));
             ScoreController = Add(new ScoreController(GameConfig));
             LevelController = Add(new LevelController(GameContext.Instance.WindowManager));
-            BallsController = Add(new BallsController(GameConfig, BallConfig));
-            BonusController = Add(new BonusController(GameConfig, BonusConfig));
+            BallsController = Add(new BallsController(GameConfig, PlayableObjectsConfig));
+            BonusController = Add(new BonusController(GameConfig, PlayableObjectsConfig));
             ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, GameContext.Instance.WindowManager));
         }
         

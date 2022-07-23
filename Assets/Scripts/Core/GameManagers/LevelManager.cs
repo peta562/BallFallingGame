@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Core.Balls;
-using Core.Bonuses;
-using Core.Bonuses.BonusEntity;
+﻿using System;
+using System.Collections.Generic;
 using Core.EventBus;
 using Core.EventBus.Events;
 using Core.Level;
 using Core.Lives;
+using Core.PlayableObjects;
+using Core.PlayableObjects.Bonuses;
 using Core.Progress;
 using Core.Score;
 
@@ -25,14 +25,15 @@ namespace Core.GameManagers {
         bool _isLevelActive;
 
         public LevelManager(ScoreController scoreController, LivesController livesController,
-            ProgressController progressController, BallsController ballsController, BonusController bonusController, LevelController levelController) {
+            ProgressController progressController, BallsController ballsController,
+            BonusController bonusController, LevelController levelController) {
             _scoreController = scoreController;
             _livesController = livesController;
             _progressController = progressController;
             _ballsController = ballsController;
             _bonusController = bonusController;
             _levelController = levelController;
-            
+
             _controllers.Add(scoreController);
             _controllers.Add(livesController);
             _controllers.Add(progressController);
@@ -50,12 +51,9 @@ namespace Core.GameManagers {
             
             EventManager.Instance.Subscribe<LivesChanged>(this, OnLivesChanged);
             EventManager.Instance.Subscribe<ScoreChanged>(this, OnScoreChanged);
-            EventManager.Instance.Subscribe<BallFell>(this, OnBallFell);
-            EventManager.Instance.Subscribe<BallKilled>(this, OnBallKilled);
-            EventManager.Instance.Subscribe<BallClicked>(this, OnBallClicked);
-            EventManager.Instance.Subscribe<BonusFell>(this, OnBonusFell);
-            EventManager.Instance.Subscribe<BonusKilled>(this, OnBonusKilled);
-            EventManager.Instance.Subscribe<BonusClicked>(this, OnBonusClicked);
+            EventManager.Instance.Subscribe<PlayableObjectFell>(this, OnPlayableObjectFell);
+            EventManager.Instance.Subscribe<PlayableObjectKilled>(this, OnPlayableObjectKilled);
+            EventManager.Instance.Subscribe<PlayableObjectClicked>(this, OnPlayableObjectClicked);
             EventManager.Instance.Subscribe<LevelFinished>(this, OnLevelFinished);
         }
 
@@ -66,12 +64,9 @@ namespace Core.GameManagers {
             
             EventManager.Instance.Unsubscribe<LivesChanged>(OnLivesChanged);
             EventManager.Instance.Unsubscribe<ScoreChanged>(OnScoreChanged);
-            EventManager.Instance.Unsubscribe<BallFell>(OnBallFell);
-            EventManager.Instance.Unsubscribe<BallKilled>(OnBallKilled);
-            EventManager.Instance.Unsubscribe<BallClicked>(OnBallClicked);
-            EventManager.Instance.Unsubscribe<BonusFell>(OnBonusFell);
-            EventManager.Instance.Unsubscribe<BonusKilled>(OnBonusKilled);
-            EventManager.Instance.Unsubscribe<BonusClicked>(OnBonusClicked);
+            EventManager.Instance.Unsubscribe<PlayableObjectFell>(OnPlayableObjectFell);
+            EventManager.Instance.Unsubscribe<PlayableObjectKilled>(OnPlayableObjectKilled);
+            EventManager.Instance.Unsubscribe<PlayableObjectClicked>(OnPlayableObjectClicked);
             EventManager.Instance.Unsubscribe<LevelFinished>(OnLevelFinished);
         }
 
@@ -93,51 +88,64 @@ namespace Core.GameManagers {
             _levelController.CheckForWin(ev.Score);
         }
 
-        void OnBallFell(BallFell ev) {
-            _ballsController.HandleBallFall(ev.Ball);
-            _livesController.ReduceLive();
-        }
-
-        void OnBallKilled(BallKilled ev) {
-            _scoreController.AddScore();
-            _ballsController.HandleBallKill(ev.Ball);
-        }
-
-        void OnBallClicked(BallClicked ev) {
-            _ballsController.HandleBallClick(ev.Ball);
-        }
-        
-        void OnBonusFell(BonusFell ev) {
-            _bonusController.HandleBonusFall(ev.Bonus);
-        }
-
-        void OnBonusKilled(BonusKilled ev) {
-            switch (ev.Bonus.BonusType) {
-                case BonusType.KillAllBalls:
-                    var killAllBallsBonus = ev.Bonus as KillAllBallsBonus;
-                    if ( killAllBallsBonus != null ) {
-                        _ballsController.RemoveAllBalls();
-                    }
+        void OnPlayableObjectFell(PlayableObjectFell ev) {
+            switch (ev.PlayableObject.PlayableObjectType) {
+                case PlayableObjectType.Ball:
+                    _livesController.ReduceLive();
+                    _ballsController.HandlePlayableObjectFall(ev.PlayableObject);
                     break;
-                case BonusType.AddLive:
-                    var addLiveBonus = ev.Bonus as AddLiveBonus;
+                case PlayableObjectType.AddLiveBonus:
+                case PlayableObjectType.MultiplyScoreBonus:
+                case PlayableObjectType.KillAllBallsBonus:
+                    _bonusController.HandlePlayableObjectFall(ev.PlayableObject);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"There are no PlayableObject to handle fall for {ev.PlayableObject.PlayableObjectType} type");
+            }
+        }
+
+        void OnPlayableObjectKilled(PlayableObjectKilled ev) {
+            switch (ev.PlayableObject.PlayableObjectType) {
+                case PlayableObjectType.Ball:
+                    _scoreController.AddScore();
+                    _ballsController.HandlePlayableObjectKill(ev.PlayableObject);
+                    break;
+                case PlayableObjectType.KillAllBallsBonus:
+                    _ballsController.RemoveAllBalls();
+                    _bonusController.HandlePlayableObjectKill(ev.PlayableObject);
+                    break;
+                case PlayableObjectType.AddLiveBonus:
+                    var addLiveBonus = ev.PlayableObject as AddLiveBonus;
                     if ( addLiveBonus != null ) {
                         _livesController.AddLives(addLiveBonus.LivesToAdd);
                     }
+                    _bonusController.HandlePlayableObjectKill(ev.PlayableObject);
                     break;
-                case BonusType.MultiplyScore:
-                    var multiplyScoreBonus = ev.Bonus as MultiplyScoreBonus;
+                case PlayableObjectType.MultiplyScoreBonus:
+                    var multiplyScoreBonus = ev.PlayableObject as MultiplyScoreBonus;
                     if ( multiplyScoreBonus != null ) {
                         _scoreController.StartMultiplyScore(multiplyScoreBonus.Multiplier, multiplyScoreBonus.MultiplierTime);
                     }
+                    _bonusController.HandlePlayableObjectKill(ev.PlayableObject);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException($"There are no PlayableObject to kill for {ev.PlayableObject.PlayableObjectType} type");
             }
-            
-            _bonusController.HandleBonusKill(ev.Bonus);
         }
 
-        void OnBonusClicked(BonusClicked ev) {
-            _bonusController.HandleBonusClick(ev.Bonus);
+        void OnPlayableObjectClicked(PlayableObjectClicked ev) {
+            switch (ev.PlayableObject.PlayableObjectType) {
+                case PlayableObjectType.Ball:
+                    _ballsController.HandlePlayableObjectClick(ev.PlayableObject);
+                    break;
+                case PlayableObjectType.AddLiveBonus:
+                case PlayableObjectType.KillAllBallsBonus:
+                case PlayableObjectType.MultiplyScoreBonus:
+                    _bonusController.HandlePlayableObjectClick(ev.PlayableObject);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"There are no PlayableObject to handle click for {ev.PlayableObject.PlayableObjectType} type");
+            }
         }
 
         void OnLevelFinished(LevelFinished ev) {

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1346f939b2483dac863e4969265d02, type: 3}
+  m_Name: PlayableObjectsConfig
+  m_EditorClassIdentifier: 
+  BallDescription:
+    Sprite: {fileID: -2413806693520163455, guid: 155f4c3a0200cfc4ea21e53fe61771a6, type: 3}
+    Prefab: {fileID: 6784819722249904330, guid: 7ba1d7f05430195449f10b5e24c3f4fd, type: 3}
+    Scale:
+      Min: 0.5
+      Max: 1.2
+    Health:
+      Min: 10
+      Max: 50
+  AddLiveBonusDescription:
+    Sprite: {fileID: 21300000, guid: 10fcd06e9de459640a632591ba7a9b4e, type: 3}
+    Prefab: {fileID: 7462677838928769971, guid: 0adf2129c3839424ba0a77a92f785bd1, type: 3}
+    Health: 20
+    Scale: 0.75
+    LivesToAdd: 1
+  KillAllBallsBonusDescription:
+    Sprite: {fileID: 21300000, guid: c0028efd03e64db46869a20086765193, type: 3}
+    Prefab: {fileID: 1900543388086107799, guid: 92431b7f9a4566a40936f207a176a0f9, type: 3}
+    Health: 20
+    Scale: 0.75
+  MultiplyScoreBonusDescription:
+    Sprite: {fileID: 21300000, guid: bf9e5984a9ac36049adf4fc33b04eb19, type: 3}
+    Prefab: {fileID: 4236025751855146395, guid: be913abdd087d0447a29e2f7d4ec2d68, type: 3}
+    Health: 20
+    Scale: 0.75
+    Multiplier: 2
+    MultiplierTime: 10

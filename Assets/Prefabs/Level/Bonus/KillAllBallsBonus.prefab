@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 44634360057047115}
   - component: {fileID: 9084567458133758107}
-  - component: {fileID: 9050399421033359959}
   - component: {fileID: 6188625802574157843}
-  - component: {fileID: 6677435263104114695}
+  - component: {fileID: 2013243017640427077}
+  - component: {fileID: 1900543388086107799}
   m_Layer: 0
   m_Name: KillAllBallsBonus
   m_TagString: Untagged
@@ -85,20 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9050399421033359959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4580443767002204480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47fd6aebdca748e9acf6dcb2c337b9b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClickHandler: {fileID: 6677435263104114695}
-  HitParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}
 --- !u!58 &6188625802574157843
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +101,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
---- !u!114 &6677435263104114695
+--- !u!114 &2013243017640427077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +110,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4580443767002204480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61b53b61b58459a92e47d1e7dd5dbc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 2921dba8e31a432d9b9558bcfbd08e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1900543388086107799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580443767002204480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8feb5cf0ecb46fda159d0dc1f6e234a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickHandler: {fileID: 2013243017640427077}
+  HitParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}

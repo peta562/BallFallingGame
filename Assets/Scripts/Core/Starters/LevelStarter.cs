@@ -1,14 +1,12 @@
-﻿using Core.Balls;
-using Core.Bonuses;
-using Core.GameManagers;
+﻿using Core.GameManagers;
+using Core.PlayableObjects;
 using Core.UI.LevelUI;
 using Core.UI.Windows;
 using UnityEngine;
 
 namespace Core.Starters {
     public class LevelStarter : MonoBehaviour {
-        [SerializeField] BallFactory BallFactory;
-        [SerializeField] BonusFactory BonusFactory;
+        [SerializeField] PlayableObjectFactory PlayableObjectFactory;
         [SerializeField] LevelUI LevelUi;
         [SerializeField] WindowHolder WindowHolder;
 
@@ -21,8 +19,8 @@ namespace Core.Starters {
             _windowManager = GameContext.Instance.WindowManager;
             _windowManager.Init(WindowHolder.Windows, WindowHolder.WindowBackground);
 
-            gameState.BallsController.ChangeFactory(BallFactory);
-            gameState.BonusController.ChangeFactory(BonusFactory);
+            gameState.BallsController.SetFactory(PlayableObjectFactory);
+            gameState.BonusController.SetFactory(PlayableObjectFactory);
             
             _levelManager = new LevelManager(gameState.ScoreController, gameState.LivesController,
                 gameState.ProgressController, gameState.BallsController, gameState.BonusController, gameState.LevelController);

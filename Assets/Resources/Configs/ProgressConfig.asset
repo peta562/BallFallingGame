@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - Id: 1
-    TargetScore: 500
+    TargetScore: 600
     TargetBalls: 0
   - Id: 2
-    TargetScore: 600
+    TargetScore: 700
     TargetBalls: 0
   - Id: 3
     TargetScore: 800
