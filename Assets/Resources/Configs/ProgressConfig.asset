@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - Id: 1
-    TargetScore: 1000
+    TargetScore: 500
     TargetBalls: 0
   - Id: 2
-    TargetScore: 10
+    TargetScore: 600
     TargetBalls: 0
   - Id: 3
-    TargetScore: 10
+    TargetScore: 800
     TargetBalls: 0
   IsEndlessGameplayEnabled: 0

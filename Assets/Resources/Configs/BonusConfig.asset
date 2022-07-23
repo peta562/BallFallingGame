@@ -29,3 +29,4 @@ MonoBehaviour:
     Scale: 0.75
     Prefab: {fileID: 2249981048386848946, guid: be913abdd087d0447a29e2f7d4ec2d68, type: 3}
     Multiplier: 2
+    MultiplierTime: 10
