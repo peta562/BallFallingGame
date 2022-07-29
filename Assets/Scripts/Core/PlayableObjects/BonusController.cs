@@ -1,5 +1,7 @@
 ﻿using System;
 using Configs;
+using Core.EventBus;
+using Core.EventBus.Events;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +25,14 @@ namespace Core.PlayableObjects {
         protected override void MovePlayableObjects() {
             for (var i = _playableObjects.Count - 1; i >= 0; i--) {
                 _playableObjects[i].Move(Vector3.down, _gameConfig.BonusSpeed * Time.deltaTime);
+            }
+        }
+        
+        protected override void CheckPlayableObjectsOutOfBounds() {
+            for (var i = _playableObjects.Count - 1; i >= 0; i--) {
+                if (_playableObjects[i].CheckOutOfBounds(_stageDimensions)) {
+                    EventManager.Instance.Fire(new PlayableObjectFell(_playableObjects[i]));
+                }
             }
         }
 

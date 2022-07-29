@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Core.PlayableObjects {
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class PlayableObject : MonoBehaviour, IPauseHandler {
-        [SerializeField] protected PointerDownClickHandler ClickHandler;
+        [SerializeField] PointerDownClickHandler ClickHandler;
         [SerializeField] ParticleSystem HitParticleSystemPrefab;
         
         protected Transform _transform;
@@ -20,14 +20,14 @@ namespace Core.PlayableObjects {
         protected IOutOfBoundsBehavior _outOfBoundsBehavior;
 
         SpriteRenderer _spriteRenderer;
+        
+        public float Health { get; protected set; }
+        public PlayableObjectType PlayableObjectType { get; protected set; }
 
         public abstract void TakeDamage(float damage);
         public abstract void DeInit();
         protected abstract void OnClicked();
         protected abstract void InitBehaviors();
-
-        public float Health { get; protected set; }
-        public PlayableObjectType PlayableObjectType { get; protected set; }
 
         void OnEnable() {
             GameContext.Instance.PauseManager.Register(this);
@@ -53,10 +53,8 @@ namespace Core.PlayableObjects {
             _viewBehavior.SetView(_spriteRenderer);
         }
 
-        public void CheckOutOfBounds(Vector2 stageDimensions) {
-            if ( _outOfBoundsBehavior.CheckOutOfBounds(stageDimensions) ) {
-                EventManager.Instance.Fire(new PlayableObjectFell(this));
-            }
+        public bool CheckOutOfBounds(Vector2 stageDimensions) {
+            return _outOfBoundsBehavior.CheckOutOfBounds(stageDimensions);
         }
 
         public void PlayHitEffect() {

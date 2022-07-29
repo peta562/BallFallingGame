@@ -7,7 +7,7 @@ namespace Core.EventBus {
 	}
 	
 	public sealed class Handler<T> : HandlerBase {
-		List<Action<T>> _actions = new List<Action<T>>(100);
+		readonly List<Action<T>> _actions = new List<Action<T>>(100);
 
 		public void Subscribe(object watcher, Action<T> action) {
 			if ( !_actions.Contains(action) ) {

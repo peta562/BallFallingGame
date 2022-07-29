@@ -7,6 +7,7 @@ namespace Core.Scenes {
         [SerializeField] LoadingScreen LoadingScreen;
 
         float _targetProgress;
+        bool _isSceneLoading;
         
         public async void LoadScene(SceneNames sceneName) {
             var strSceneName = sceneName.ToString();
@@ -14,6 +15,7 @@ namespace Core.Scenes {
             scene.allowSceneActivation = false;
 
             LoadingScreen.Init();
+            _isSceneLoading = true;
 
             do {
                 await Task.Delay(100);
@@ -24,10 +26,14 @@ namespace Core.Scenes {
             await Task.Delay(1000);
 
             scene.allowSceneActivation = true;
+            _isSceneLoading = false;
             LoadingScreen.DeInit();
         }
 
         void Update() {
+            if ( !_isSceneLoading ) {
+                return;
+            }
             LoadingScreen.SetProgress(_targetProgress);
         }
     }

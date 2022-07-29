@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace Core.PlayableObjects.PlayableObjectsBehaviors {
     public class ParticleSystemWithScaleAndColorEffectBehavior : IParticleEffectBehavior {
-        ParticleSystem _particleSystem;
         readonly Color _color;
         readonly float _scale;
+        
+        ParticleSystem _particleSystem;
 
         public ParticleSystemWithScaleAndColorEffectBehavior(Color color, float scale) {
             _color = color;

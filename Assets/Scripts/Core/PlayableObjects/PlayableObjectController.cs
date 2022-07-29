@@ -26,10 +26,7 @@ namespace Core.PlayableObjects {
         
         protected abstract void MovePlayableObjects();
         
-        public void SetFactory(PlayableObjectFactory playableObjectFactory) {
-            _playableObjectFactory = playableObjectFactory;
-            _playableObjectFactory.Init(_playableObjectsConfig);
-        }
+        protected abstract void CheckPlayableObjectsOutOfBounds();
 
         public override void Init() {
         }
@@ -45,6 +42,11 @@ namespace Core.PlayableObjects {
             CheckForSpawn();
             CheckPlayableObjectsOutOfBounds();
             MovePlayableObjects();
+        }
+        
+        public void SetFactory(PlayableObjectFactory playableObjectFactory) {
+            _playableObjectFactory = playableObjectFactory;
+            _playableObjectFactory.Init(_playableObjectsConfig);
         }
         
         public void HandlePlayableObjectClick(PlayableObject playableObject) {
@@ -71,12 +73,6 @@ namespace Core.PlayableObjects {
 
             _playableObjectFactory.RemovePlayableObject(playableObject);
             _playableObjects.Remove(playableObject);
-        }
-        
-        void CheckPlayableObjectsOutOfBounds() {
-            for (var i = _playableObjects.Count - 1; i >= 0; i--) {
-                _playableObjects[i].CheckOutOfBounds(_stageDimensions);
-            }
         }
     }
 }

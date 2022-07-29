@@ -19,7 +19,7 @@ namespace Core.UI.LevelUI {
         }
         
         public void StartMultiplyTimer(int multiplier, float multiplierTime) {
-            ScoreMultiplierText.text = $"x{multiplier}";
+            ScoreMultiplierText.text = $"x{multiplier.ToString()}";
             ScoreMultiplierSlider.maxValue = multiplierTime;
             ScoreMultiplierSlider.value = multiplierTime;
 
