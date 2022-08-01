@@ -947,6 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LivesView: {fileID: 6923396258658347877}
   ScoreView: {fileID: 8782463260746750817}
+  ScoreMultiplierView: {fileID: 7580340513581567082}
   PauseButton: {fileID: 5980370649613408985}
 --- !u!1 &3908085132710397993
 GameObject:
@@ -1202,7 +1203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextCounterAnimation: {fileID: 3477180389190335023}
   ScoreText: {fileID: 8373041943194500476}
-  ScoreMultiplierView: {fileID: 7580340513581567082}
 --- !u!1 &7468890124251616199
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ namespace Core.UI.LevelUI {
     public sealed class LevelUI : MonoBehaviour {
         [SerializeField] LivesView LivesView;
         [SerializeField] ScoreView ScoreView;
+        [SerializeField] ScoreMultiplierView ScoreMultiplierView;
         [SerializeField] Button PauseButton;
 
         LivesController _livesController;
@@ -61,11 +62,11 @@ namespace Core.UI.LevelUI {
         }
 
         void OnScoreMultiplyStarted(ScoreMultiplyStarted ev) {
-            ScoreView.StartMultiplyScore(ev.Multiplier, ev.MultiplierTime);
+            ScoreMultiplierView.StartMultiplyTimer(ev.Multiplier, ev.MultiplierTime);
         }
 
         void OnScoreMultiplyStopped(ScoreMultiplyStopped ev) {
-            ScoreView.StopMultiplyScore();
+            ScoreMultiplierView.StopMultiplyTimer();
         }
     }
 }
