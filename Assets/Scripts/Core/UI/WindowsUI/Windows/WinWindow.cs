@@ -1,23 +1,28 @@
 ﻿using Core.Scenes;
+using Core.Sound;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Core.UI.Windows.Pause {
+namespace Core.UI.WindowsUI.Windows {
     public sealed class WinWindow : BaseWindow {
         [SerializeField] Button OkButton;
 
         public override void Show() {
-            OkButton.onClick.AddListener(Hide);
+            OkButton.onClick.AddListener(OnOkButtonClicked);
 
             base.Show();
         }
 
         public override void Hide() {
-            OkButton.onClick.RemoveListener(Hide);
+            OkButton.onClick.RemoveListener(OnOkButtonClicked);
 
             base.Hide();
             SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+        }
+
+        void OnOkButtonClicked() {
+            SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
+            Hide();
         }
     }
 }

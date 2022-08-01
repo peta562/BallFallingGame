@@ -16,7 +16,7 @@ namespace Core.PlayableObjects {
             
         }
 
-        public void RemoveAllBalls() {
+        public void KillAllBalls() {
             for (var i = _playableObjects.Count - 1; i >= 0; i--) {
                 HandlePlayableObjectKill(_playableObjects[i]);
             }

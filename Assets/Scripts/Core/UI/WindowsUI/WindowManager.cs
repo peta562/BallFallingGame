@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Core.UI.Windows {
+namespace Core.UI.WindowsUI {
     public sealed class WindowManager {
         readonly Stack<BaseWindow> _activeWindows = new Stack<BaseWindow>();
         

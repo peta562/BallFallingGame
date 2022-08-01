@@ -2,12 +2,12 @@
 using Core.Level;
 using Core.Scenes;
 using Core.Score;
+using Core.Sound;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Core.UI.Windows.Pause {
+namespace Core.UI.WindowsUI.Windows {
     public sealed class PlayWindow : BaseWindow {
         [SerializeField] Button PlayButton;
         [SerializeField] TMP_Text LevelIdText;
@@ -24,8 +24,8 @@ namespace Core.UI.Windows.Pause {
         }
         
         public override void Show() {
-            TargetScoreText.text = $"Your target: {_levelInfo.TargetScore}";
-            LevelIdText.text = $"Current level: {_levelInfo.Id}";
+            TargetScoreText.text = $"Your target: {_levelInfo.TargetScore.ToString()}";
+            LevelIdText.text = $"Current level: {_levelInfo.Id.ToString()}";
             
             PlayButton.onClick.AddListener(OnPlayButtonClicked);
 
@@ -39,6 +39,7 @@ namespace Core.UI.Windows.Pause {
         }
 
         void OnPlayButtonClicked() {
+            SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             Hide();
             _levelController.StartLevel(_levelInfo);
             SceneLoader.Instance.LoadScene(SceneNames.Level);

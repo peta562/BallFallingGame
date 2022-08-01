@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClickHandler: {fileID: 2013243017640427077}
-  HitParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}
+  DieParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}

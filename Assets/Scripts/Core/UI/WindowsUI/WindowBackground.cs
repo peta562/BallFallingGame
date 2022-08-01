@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.UI.Windows {
+namespace Core.UI.WindowsUI {
     public sealed class WindowBackground : MonoBehaviour {
         public void Show() {
             gameObject.SetActive(true);

@@ -2,8 +2,9 @@
 using Core.EventBus.Events;
 using Core.Lives;
 using Core.Score;
-using Core.UI.Windows;
-using Core.UI.Windows.Pause;
+using Core.Sound;
+using Core.UI.WindowsUI;
+using Core.UI.WindowsUI.Windows;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +48,7 @@ namespace Core.UI.LevelUI {
         }
 
         void OnPauseButtonClicked() {
+            SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             _windowManager.ShowWindow<PauseWindow>();
         }
 

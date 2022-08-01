@@ -1,8 +1,8 @@
 ﻿using Configs;
 using Core.Level;
 using Core.Score;
-using Core.UI.Windows;
-using Core.UI.Windows.Pause;
+using Core.UI.WindowsUI;
+using Core.UI.WindowsUI.Windows;
 
 namespace Core.Progress {
     public sealed class ProgressController : BaseController {

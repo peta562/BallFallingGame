@@ -8,6 +8,7 @@ using Core.PlayableObjects;
 using Core.PlayableObjects.Bonuses;
 using Core.Progress;
 using Core.Score;
+using Core.Sound;
 
 namespace Core.GameManagers {
     public sealed class LevelManager {
@@ -91,8 +92,8 @@ namespace Core.GameManagers {
         void OnPlayableObjectFell(PlayableObjectFell ev) {
             switch (ev.PlayableObject.PlayableObjectType) {
                 case PlayableObjectType.Ball:
-                    _livesController.ReduceLive();
                     _ballsController.HandlePlayableObjectFall(ev.PlayableObject);
+                    _livesController.ReduceLive();
                     break;
                 case PlayableObjectType.AddLiveBonus:
                 case PlayableObjectType.MultiplyScoreBonus:
@@ -105,13 +106,15 @@ namespace Core.GameManagers {
         }
 
         void OnPlayableObjectKilled(PlayableObjectKilled ev) {
+            SoundManager.Instance.PlaySound(AudioClipNames.ObjectKill);
+            
             switch (ev.PlayableObject.PlayableObjectType) {
                 case PlayableObjectType.Ball:
-                    _scoreController.AddScore();
                     _ballsController.HandlePlayableObjectKill(ev.PlayableObject);
+                    _scoreController.AddScore();
                     break;
                 case PlayableObjectType.KillAllBallsBonus:
-                    _ballsController.RemoveAllBalls();
+                    _ballsController.KillAllBalls();
                     _bonusController.HandlePlayableObjectKill(ev.PlayableObject);
                     break;
                 case PlayableObjectType.AddLiveBonus:
@@ -134,6 +137,8 @@ namespace Core.GameManagers {
         }
 
         void OnPlayableObjectClicked(PlayableObjectClicked ev) {
+            SoundManager.Instance.PlaySound(AudioClipNames.ObjectClick);
+            
             switch (ev.PlayableObject.PlayableObjectType) {
                 case PlayableObjectType.Ball:
                     _ballsController.HandlePlayableObjectClick(ev.PlayableObject);

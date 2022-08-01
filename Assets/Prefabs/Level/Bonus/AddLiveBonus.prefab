@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClickHandler: {fileID: 7626889773287247454}
-  HitParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}
+  DieParticleSystemPrefab: {fileID: 6695593573379535491, guid: 354b49dff70234c448e20d6c63eb8726, type: 3}
 --- !u!114 &7626889773287247454
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
-﻿using Core.EventBus;
-using Core.EventBus.Events;
-using Core.Pause;
+﻿using Core.Pause;
 using Core.PlayableObjects.Bonuses;
 using Core.PlayableObjects.PlayableObjectsBehaviors.Interfaces;
 using UnityEngine;
@@ -9,7 +7,7 @@ namespace Core.PlayableObjects {
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class PlayableObject : MonoBehaviour, IPauseHandler {
         [SerializeField] PointerDownClickHandler ClickHandler;
-        [SerializeField] ParticleSystem HitParticleSystemPrefab;
+        [SerializeField] ParticleSystem DieParticleSystemPrefab;
         
         protected Transform _transform;
         
@@ -46,24 +44,24 @@ namespace Core.PlayableObjects {
         }
 
         public void Move(Vector3 direction, float speed) {
-            _moveBehaviour.Move(direction, speed);
+            _moveBehaviour?.Move(direction, speed);
         }
 
         public void SetView() {
-            _viewBehavior.SetView(_spriteRenderer);
+            _viewBehavior?.SetView(_spriteRenderer);
         }
 
         public bool CheckOutOfBounds(Vector2 stageDimensions) {
-            return _outOfBoundsBehavior.CheckOutOfBounds(stageDimensions);
+            return _outOfBoundsBehavior?.CheckOutOfBounds(stageDimensions) ?? true;
         }
 
         public void PlayHitEffect() {
-            _hitEffectBehavior.PlayEffect();   
+            _hitEffectBehavior?.PlayEffect();   
         }
 
         public void PlayDieEffect() {
-            var particleEffect = Instantiate(HitParticleSystemPrefab, transform.position, Quaternion.identity);
-            _dieParticleEffectBehavior.PlayEffect(particleEffect);
+            var particleEffect = Instantiate(DieParticleSystemPrefab, transform.position, Quaternion.identity);
+            _dieParticleEffectBehavior?.PlayEffect(particleEffect);
         }
 
         void IPauseHandler.OnPauseChanged(bool isPaused) {

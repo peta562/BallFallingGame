@@ -1,5 +1,5 @@
 ﻿using Core.UI.MainMenuUI;
-using Core.UI.Windows;
+using Core.UI.WindowsUI;
 using UnityEngine;
 
 namespace Core.Starters {

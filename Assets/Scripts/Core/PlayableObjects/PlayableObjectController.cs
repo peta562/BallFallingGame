@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Configs;
 using Core.EventBus;
 using Core.EventBus.Events;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Core.PlayableObjects {
     public abstract class PlayableObjectController : BaseController {

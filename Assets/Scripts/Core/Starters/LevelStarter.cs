@@ -1,7 +1,7 @@
 ﻿using Core.GameManagers;
 using Core.PlayableObjects;
 using Core.UI.LevelUI;
-using Core.UI.Windows;
+using Core.UI.WindowsUI;
 using UnityEngine;
 
 namespace Core.Starters {

@@ -1,10 +1,10 @@
 ﻿using System;
+using Core.Sound;
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.UI.Windows {
+namespace Core.UI.WindowsUI {
     public abstract class BaseWindow : MonoBehaviour {
 	    [SerializeField] Button CloseButtonPrefab;
         [SerializeField] RectTransform CloseButtonRoot;
@@ -36,16 +36,21 @@ namespace Core.UI.Windows {
         }
         
         public virtual void Show() {
-	        _closeButton.onClick.AddListener(Hide);
+	        _closeButton.onClick.AddListener(OnCloseButtonClicked);
             gameObject.SetActive(true);
             PlayShowAnimation();
         }
 
         public virtual void Hide() {
-	        _closeButton.onClick.RemoveListener(Hide);
+	        _closeButton.onClick.RemoveListener(OnCloseButtonClicked);
             PlayHideAnimation();
             gameObject.SetActive(false);
             _onHideAction?.Invoke();
+        }
+
+        void OnCloseButtonClicked() {
+	        SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
+	        Hide();
         }
 
         void PlayShowAnimation() {

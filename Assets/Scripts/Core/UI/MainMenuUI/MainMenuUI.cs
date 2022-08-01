@@ -1,4 +1,5 @@
 ﻿using Core.Progress;
+using Core.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ namespace Core.UI.MainMenuUI {
         }
 
         void OnPlayButtonClicked() {
+            SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             _progressController.TryShowPlayWindow();
         }
     }

@@ -12,7 +12,7 @@ namespace Core.PlayableObjects.PlayableObjectsBehaviors {
         }
         
         public bool CheckOutOfBounds(Vector2 stageDimensions) {
-            return _transform.position.y < (-stageDimensions.y - _scale / 2);
+            return _transform.position.y < (-stageDimensions.y - _scale);
         }
     }
 }

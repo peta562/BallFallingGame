@@ -1,4 +1,4 @@
-﻿namespace Core.UI.Windows {
+﻿namespace Core.UI.WindowsUI {
     public enum ShowAnimationType {
         NoAnim,
         ScaleUp,

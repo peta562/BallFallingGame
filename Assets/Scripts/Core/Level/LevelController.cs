@@ -1,8 +1,9 @@
 ﻿using Configs;
 using Core.EventBus;
 using Core.EventBus.Events;
-using Core.UI.Windows;
-using Core.UI.Windows.Pause;
+using Core.Sound;
+using Core.UI.WindowsUI;
+using Core.UI.WindowsUI.Windows;
 
 namespace Core.Level {
     public sealed class LevelController : BaseController {
@@ -37,11 +38,13 @@ namespace Core.Level {
         }
         
         void WinLevel() {
+            SoundManager.Instance.PlaySound(AudioClipNames.WinSound);
             EventManager.Instance.Fire(new LevelFinished(true));
             _windowManager.ShowWindow<WinWindow>();
         }
 
         void LoseLevel() {
+            SoundManager.Instance.PlaySound(AudioClipNames.LoseSound);
             EventManager.Instance.Fire(new LevelFinished(false));
             _windowManager.ShowWindow<LoseWindow>();
         }
