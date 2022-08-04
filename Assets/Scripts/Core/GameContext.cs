@@ -1,15 +1,17 @@
 ﻿using Core.Pause;
+using Core.SaveLoad;
 using Core.UI.WindowsUI;
 
 namespace Core {
     public sealed class GameContext {
         public static GameContext Instance { get; private set; }
         
-        public SaveLoadManager SaveLoadManager { get; }
+        public ISaveLoadManager SaveLoadManager { get; }
         public PauseManager PauseManager { get; }
         public WindowManager WindowManager { get; }
 
         GameContext() {
+            SaveLoadManager = new JsonSaveLoadManager();
             PauseManager = new PauseManager();
             WindowManager = new WindowManager();
         }

@@ -11,8 +11,8 @@ namespace Core.Level {
         
         LevelInfo _levelInfo;
 
-        public LevelController(WindowManager windowManager) {
-            _windowManager = windowManager;
+        public LevelController(GameContext gameContext) {
+            _windowManager = gameContext.WindowManager;
         }
         
         public override void Init() {

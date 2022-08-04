@@ -4,7 +4,9 @@ using Core.Level;
 using Core.Progress;
 using Core.Lives;
 using Core.PlayableObjects;
+using Core.SaveLoad;
 using Core.Score;
+using Core.Settings;
 using UnityEngine;
 
 namespace Core {
@@ -21,17 +23,39 @@ namespace Core {
         public ScoreController ScoreController { get; private set; }
         public LevelController LevelController { get; private set; }
         public ProgressController ProgressController { get; private set; }
+        public SettingsController SettingsController { get; private set; }
 
         public GameConfig GameConfig { get; private set; }
         public PlayableObjectsConfig PlayableObjectsConfig { get; private set; }
         public ProgressConfig ProgressConfig { get; private set; }
 
+        SaveData _saveData;
+
         GameState() {
 
             LoadConfigs();
             AddControllers();
+            LoadData();
         }
 
+        public void SaveData() {
+            foreach (var controller in _controllers) {
+                controller.Save(_saveData);
+            }
+            
+            var saveLoadManager = GameContext.Instance.SaveLoadManager;
+            saveLoadManager.Save(_saveData);
+        }
+        
+        void LoadData() {
+            var saveLoadManager = GameContext.Instance.SaveLoadManager;
+            _saveData = saveLoadManager.Load();
+            
+            foreach (var controller in _controllers) {
+                controller.Load(_saveData);
+            }
+        }
+        
         void LoadConfigs() {
             GameConfig = Resources.Load<GameConfig>($"{ConfigsPath}/GameConfig");
             PlayableObjectsConfig = Resources.Load<PlayableObjectsConfig>($"{ConfigsPath}/PlayableObjectsConfig");
@@ -39,12 +63,15 @@ namespace Core {
         }
         
         void AddControllers() {
+            var gameContext = GameContext.Instance;
+            
             LivesController = Add(new LivesController(GameConfig));
             ScoreController = Add(new ScoreController(GameConfig));
-            LevelController = Add(new LevelController(GameContext.Instance.WindowManager));
+            LevelController = Add(new LevelController(gameContext));
             BallsController = Add(new BallsController(GameConfig, PlayableObjectsConfig));
             BonusController = Add(new BonusController(GameConfig, PlayableObjectsConfig));
-            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, GameContext.Instance.WindowManager));
+            ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, gameContext));
+            SettingsController = Add(new SettingsController());
         }
         
         T Add<T>(T controller) where T : BaseController {

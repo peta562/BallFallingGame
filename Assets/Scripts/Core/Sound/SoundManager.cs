@@ -3,7 +3,7 @@
 namespace Core.Sound {
     public sealed class SoundManager : Singleton<SoundManager> {
         [SerializeField] AudioClipHolder AudioClipHolder;
-        [SerializeField] AudioSource EffectAudioSource;
+        [SerializeField] AudioSource SoundEffectsAudioSource;
         [SerializeField] AudioSource MusicAudioSource;
 
         public void PlaySound(AudioClipNames audioClipName) {
@@ -14,23 +14,23 @@ namespace Core.Sound {
                 return;
             }
 
-            if ( EffectAudioSource.isPlaying ) {
-                EffectAudioSource.Stop();
+            if ( SoundEffectsAudioSource.isPlaying ) {
+                SoundEffectsAudioSource.Stop();
             }
             
-            EffectAudioSource.PlayOneShot(audioClip);
+            SoundEffectsAudioSource.PlayOneShot(audioClip);
         }
 
         public void ChangeVolume(float value) {
             AudioListener.volume = value;
         }
 
-        public void ToggleEffect() {
-            EffectAudioSource.mute = !EffectAudioSource.mute;
+        public void ToggleMusic(bool isOn) {
+            MusicAudioSource.mute = !isOn;
         }
-
-        public void ToggleMusic() {
-            MusicAudioSource.mute = !MusicAudioSource.mute;
+        
+        public void ToggleSoundEffects(bool isOn) {
+            SoundEffectsAudioSource.mute = !isOn;
         }
 
         AudioClip GetAudioClip(AudioClipNames audioClipName) {

@@ -1,5 +1,6 @@
 ﻿using Configs;
 using Core.Level;
+using Core.SaveLoad;
 using Core.Score;
 using Core.UI.WindowsUI;
 using Core.UI.WindowsUI.Windows;
@@ -11,20 +12,28 @@ namespace Core.Progress {
         readonly LevelController _levelController;
         readonly WindowManager _windowManager;
         
-        int _currentLevelId = 1;
+        int _currentLevelId;
 
         public ProgressController(ProgressConfig progressConfig, ScoreController scoreController,
-            LevelController levelController, WindowManager windowManager) {
+            LevelController levelController, GameContext gameContext) {
             _progressConfig = progressConfig;
             _scoreController = scoreController;
             _levelController = levelController;
-            _windowManager = windowManager;
+            _windowManager = gameContext.WindowManager;
         }
 
         public override void Init() {
         }
 
         public override void DeInit() {
+        }
+
+        public override void Save(SaveData saveData) {
+            saveData.CurrentLevelId = _currentLevelId;
+        }
+        
+        public override void Load(SaveData saveData) {
+            _currentLevelId = saveData.CurrentLevelId;
         }
         
         public void TryShowPlayWindow() {
