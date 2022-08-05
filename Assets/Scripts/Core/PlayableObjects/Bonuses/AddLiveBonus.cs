@@ -10,7 +10,7 @@ namespace Core.PlayableObjects.Bonuses {
         
         public int LivesToAdd { get; private set; }
         
-        public void Init(PlayableObjectType playableObjectType, float health, Vector2 position, float scale, Sprite sprite, int livesToAdd) {
+        public void Init(PlayableObjectType playableObjectType, int health, Vector2 position, float scale, Sprite sprite, int livesToAdd) {
             PlayableObjectType = playableObjectType;
             Health = health;
             LivesToAdd = livesToAdd;
@@ -33,7 +33,7 @@ namespace Core.PlayableObjects.Bonuses {
             _outOfBoundsBehavior = null;
         }
 
-        public override void TakeDamage(float damage) {
+        public override void TakeDamage(int damage) {
             Health -= damage;
         }
 

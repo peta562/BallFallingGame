@@ -37,7 +37,7 @@ namespace Core.PlayableObjects {
                         stageDimensions.y + scale);
                     
                     var color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-                    var health = ballConfig.Health.GetRandomFloat;
+                    var health = ballConfig.Health.GetRandomInt;
 
                     ball.Init(playableObjectType, health, position, scale, ballConfig.Sprite, color);
 

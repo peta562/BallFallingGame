@@ -14,13 +14,13 @@ namespace Configs {
     public class BallDescription : PlayableObjectDescription {
         public Ball Prefab;
         public FloatRange Scale = new FloatRange(0.5f, 1.2f);
-        public FloatRange Health = new FloatRange(10f, 50f);
+        public IntRange Health = new IntRange(10, 50);
     }
     
     [Serializable]
     public class AddLivePlayableObjectDescription : PlayableObjectDescription {
         public AddLiveBonus Prefab;
-        public float Health;
+        public int Health;
         public float Scale;
         public int LivesToAdd;
     }
@@ -28,14 +28,14 @@ namespace Configs {
     [Serializable]
     public class KillAllBallsPlayableObjectDescription : PlayableObjectDescription {
         public KillAllBallsBonus Prefab;
-        public float Health;
+        public int Health;
         public float Scale;
     }
     
     [Serializable]
     public class MultiplyScorePlayableObjectDescription : PlayableObjectDescription {
         public MultiplyScoreBonus Prefab;
-        public float Health;
+        public int Health;
         public float Scale;
         public int Multiplier;
         public float MultiplierTime;

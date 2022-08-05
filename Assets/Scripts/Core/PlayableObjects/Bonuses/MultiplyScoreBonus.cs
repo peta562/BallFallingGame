@@ -11,7 +11,7 @@ namespace Core.PlayableObjects.Bonuses {
         public int Multiplier { get; private set; }
         public float MultiplierTime { get; private set; }
         
-        public void Init(PlayableObjectType playableObjectType, float health, Vector2 position, float scale, Sprite sprite, int multiplier, float multiplierTime) {
+        public void Init(PlayableObjectType playableObjectType, int health, Vector2 position, float scale, Sprite sprite, int multiplier, float multiplierTime) {
             PlayableObjectType = playableObjectType;
             Health = health;
             Multiplier = multiplier;
@@ -35,7 +35,7 @@ namespace Core.PlayableObjects.Bonuses {
             _outOfBoundsBehavior = null;
         }
 
-        public override void TakeDamage(float damage) {
+        public override void TakeDamage(int damage) {
             Health -= damage;
         }
 

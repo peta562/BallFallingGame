@@ -19,10 +19,10 @@ namespace Core.PlayableObjects {
 
         SpriteRenderer _spriteRenderer;
         
-        public float Health { get; protected set; }
+        public int Health { get; protected set; }
         public PlayableObjectType PlayableObjectType { get; protected set; }
 
-        public abstract void TakeDamage(float damage);
+        public abstract void TakeDamage(int damage);
         public abstract void DeInit();
         protected abstract void OnClicked();
         protected abstract void InitBehaviors();

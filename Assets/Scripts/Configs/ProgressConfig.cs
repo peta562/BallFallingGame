@@ -7,7 +7,7 @@ namespace Configs {
     public sealed class LevelInfo {
         public int Id;
         public int TargetScore;
-        public int TargetBalls; //ToDo
+        int TargetBalls; //ToDo
     }
     
     [CreateAssetMenu(fileName = "ProgressConfig", menuName = "ScriptableObjects/Configs/ProgressConfig", order = 3)]

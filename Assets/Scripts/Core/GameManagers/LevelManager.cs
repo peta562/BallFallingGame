@@ -5,6 +5,7 @@ using Core.EventBus.Events;
 using Core.Level;
 using Core.Lives;
 using Core.PlayableObjects;
+using Core.PlayableObjects.Balls;
 using Core.PlayableObjects.Bonuses;
 using Core.Progress;
 using Core.Score;
@@ -111,6 +112,7 @@ namespace Core.GameManagers {
             switch (ev.PlayableObject.PlayableObjectType) {
                 case PlayableObjectType.Ball:
                     _ballsController.HandlePlayableObjectKill(ev.PlayableObject);
+                    EventManager.Instance.Fire(new BallKilled(ev.PlayableObject as Ball));
                     _scoreController.AddScore();
                     break;
                 case PlayableObjectType.KillAllBallsBonus:

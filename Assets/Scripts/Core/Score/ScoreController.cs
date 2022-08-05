@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Core.Score {
     public sealed class ScoreController : BaseController {
         readonly GameConfig _gameConfig;
-        readonly IBallScoreProvider _ballScoreProvider;
+        
+        IScoreProvider _scoreProvider;
         
         int _score;
         bool _isMultiplyScoreEnabled;
@@ -18,12 +19,21 @@ namespace Core.Score {
 
         public ScoreController(GameConfig gameConfig) {
             _gameConfig = gameConfig;
-
-            _ballScoreProvider = new ConfigBallScoreProvider(gameConfig);
         }
         
         public override void Init() {
             _score = 0;
+            
+            switch (_gameConfig.ScoreType) {
+                case ScoreType.ConfigScore:
+                    _scoreProvider = new ConfigBallScoreProvider(_gameConfig);
+                    break;
+                case ScoreType.HealthBallScore:
+                    _scoreProvider = new HealthBallScoreProvider();
+                    break;
+            }
+
+            _scoreProvider.Init();
         }
 
         public override void Update() {
@@ -39,10 +49,12 @@ namespace Core.Score {
         }
 
         public override void DeInit() {
+            _scoreProvider.DeInit();
+            _scoreProvider = null;
         }
 
         public void AddScore() {
-            var addedScore = _ballScoreProvider.GetBallScore();
+            var addedScore = _scoreProvider.GetScore();
 
             if ( _isMultiplyScoreEnabled ) {
                 addedScore *= _multiplier;

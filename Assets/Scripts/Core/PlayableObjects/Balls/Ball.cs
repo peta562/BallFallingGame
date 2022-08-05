@@ -8,10 +8,14 @@ namespace Core.PlayableObjects.Balls {
         Sprite _sprite;
         Color _color;
         float _scale;
+        
+        public int MaxHealth { get; private set; }
 
-        public void Init(PlayableObjectType playableObjectType, float health, Vector2 position, float scale, Sprite sprite, Color color) {
+        public void Init(PlayableObjectType playableObjectType, int health, Vector2 position, float scale, Sprite sprite, Color color) {
             PlayableObjectType = playableObjectType;
             Health = health;
+
+            MaxHealth = Health;
             
             _transform.position = position;
 
@@ -32,7 +36,7 @@ namespace Core.PlayableObjects.Balls {
             _outOfBoundsBehavior = null;
         }
 
-        public override void TakeDamage(float damage) {
+        public override void TakeDamage(int damage) {
             Health -= damage;
         }
         

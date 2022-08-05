@@ -18,4 +18,5 @@ MonoBehaviour:
   BallDeltaSpawn: 3
   BonusDeltaSpawn: 7
   Damage: 10
+  ScoreType: 1
   Score: 20

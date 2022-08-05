@@ -1,6 +1,7 @@
 ﻿using Configs;
 using Core.EventBus;
 using Core.EventBus.Events;
+using Core.PlayableObjects.Balls;
 using UnityEngine;
 
 namespace Core.PlayableObjects {
@@ -18,7 +19,7 @@ namespace Core.PlayableObjects {
 
         public void KillAllBalls() {
             for (var i = _playableObjects.Count - 1; i >= 0; i--) {
-                HandlePlayableObjectKill(_playableObjects[i]);
+                EventManager.Instance.Fire(new PlayableObjectKilled(_playableObjects[i]));
             }
         }
         
