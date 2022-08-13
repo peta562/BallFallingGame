@@ -6,18 +6,18 @@ namespace Core.Score {
         int _health;
 
         public void Init() {
-            EventManager.Instance.Subscribe<BallKilled>(this, OnBallSpawned);
+            EventManager.Instance.Subscribe<BallKilled>(this, OnBallKilled);
         }
 
         public void DeInit() {
-            EventManager.Instance.Unsubscribe<BallKilled>(OnBallSpawned);
+            EventManager.Instance.Unsubscribe<BallKilled>(OnBallKilled);
         }
         
         public int GetScore() {
             return _health;
         }
 
-        void OnBallSpawned(BallKilled ev) {
+        void OnBallKilled(BallKilled ev) {
             _health = ev.Ball.MaxHealth;
         }
     }

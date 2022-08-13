@@ -10,12 +10,16 @@ namespace Core.UI.WindowsUI.Windows {
         [SerializeField] Button ToggleEffectSoundButton;
 
         [Space]
-        [SerializeField] Sprite MusicSoundButtonOnImage;
-        [SerializeField] Sprite MusicSoundButtonOffImage;
+        [SerializeField] Image MusicSoundButtonImage;
+        [SerializeField] Image EffectsSoundButtonImage;
+        
+        [Space]
+        [SerializeField] Sprite MusicSoundButtonOnSprite;
+        [SerializeField] Sprite MusicSoundButtonOffSprite;
 
         [Space] 
-        [SerializeField] Sprite EffectsSoundButtonOnImage;
-        [SerializeField] Sprite EffectsSoundButtonOffImage;
+        [SerializeField] Sprite EffectsSoundButtonOnSprite;
+        [SerializeField] Sprite EffectsSoundButtonOffSprite;
 
         SettingsController _settingsController;
         
@@ -62,14 +66,14 @@ namespace Core.UI.WindowsUI.Windows {
         }
 
         void ChangeMusicButtonSprite(bool isOn) {
-            ToggleMusicSoundButton.image.sprite =
-                isOn ? MusicSoundButtonOnImage : MusicSoundButtonOffImage;
+            MusicSoundButtonImage.sprite =
+                isOn ? MusicSoundButtonOnSprite : MusicSoundButtonOffSprite;
         }
 
         void ChangeSoundEffectsButtonSprite(bool isOn) {
-            ToggleEffectSoundButton.image.sprite = isOn
-                ? EffectsSoundButtonOnImage
-                : EffectsSoundButtonOffImage;
+            EffectsSoundButtonImage.sprite = isOn
+                ? EffectsSoundButtonOnSprite
+                : EffectsSoundButtonOffSprite;
         }
     }
 }
