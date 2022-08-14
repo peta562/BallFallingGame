@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c5cc381641848034eb08139dbfc49f85
+  m_SerializeEntries:
+  - m_GUID: 7f456cfa61c9bc84eb921c07996a1797
+    m_Address: LoadingScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5320dea509cd80f42bb2b077d0725975
+    m_Address: GameConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ebe0fed0e4a3b324c9d51359e391a702
+    m_Address: ProgressConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 680333392d786a34ead02bf65827e181
+    m_Address: PlayableObjectsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9991204fa2925534f94b3065b4e56fc4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 500803bfd3e69d643ae9645e42d8fe64, type: 2}
+    - {fileID: 11400000, guid: e2bbaa4bb3b19764b9d0c9ea02bb0717, type: 2}

@@ -1,4 +1,5 @@
-﻿using Core.Pause;
+﻿using Core.Loaders;
+using Core.Pause;
 using Core.SaveLoad;
 using Core.UI.WindowsUI;
 
@@ -7,11 +8,15 @@ namespace Core {
         public static GameContext Instance { get; private set; }
         
         public ISaveLoadManager SaveLoadManager { get; }
+        public AssetLoader AssetLoader { get; }
+        public IConfigLoader ConfigLoader { get; }
         public PauseManager PauseManager { get; }
         public WindowManager WindowManager { get; }
 
         GameContext() {
             SaveLoadManager = new JsonSaveLoadManager();
+            AssetLoader = new AssetLoader();
+            ConfigLoader = new ConfigLoader();
             PauseManager = new PauseManager();
             WindowManager = new WindowManager();
         }

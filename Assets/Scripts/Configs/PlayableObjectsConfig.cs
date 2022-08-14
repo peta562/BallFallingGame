@@ -42,7 +42,7 @@ namespace Configs {
     }
     
     [CreateAssetMenu(fileName = "PlayableObjectsConfig", menuName = "ScriptableObjects/Configs/PlayableObjectsConfig", order = 2)]
-    public class PlayableObjectsConfig : ScriptableObject {
+    public class PlayableObjectsConfig : BaseConfig {
         public BallDescription BallDescription;
         public AddLivePlayableObjectDescription AddLiveBonusDescription;
         public KillAllBallsPlayableObjectDescription KillAllBallsBonusDescription;

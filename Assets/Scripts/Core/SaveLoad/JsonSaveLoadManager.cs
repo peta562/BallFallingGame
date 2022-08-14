@@ -6,12 +6,12 @@ namespace Core.SaveLoad {
         readonly string _filePath;
 
         public JsonSaveLoadManager() {
-            _filePath =  Application.persistentDataPath + "/Save.json";
+            _filePath = Application.persistentDataPath + "/Save.json";
         }
 
         public void Save(SaveData saveData) {
             var json = JsonUtility.ToJson(saveData);
-           
+
             using (var writer = new StreamWriter(_filePath)) {
                 writer.Write(json);
             }
@@ -23,11 +23,11 @@ namespace Core.SaveLoad {
             if ( !File.Exists(_filePath) ) {
                 return new SaveData();
             }
-            
+
             using (var reader = new StreamReader(_filePath)) {
                 string line;
 
-                while ((line = reader.ReadLine()) != null) {
+                while ( (line = reader.ReadLine()) != null ) {
                     json += line;
                 }
             }

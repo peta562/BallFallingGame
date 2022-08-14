@@ -10,7 +10,8 @@ namespace Core.Starters {
             GoToMainMenuScene();
         }
 
-        void GoToMainMenuScene() {
+        async void GoToMainMenuScene() {
+            await SceneLoader.Instance.LoadLoadingScreen();
             SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
     }

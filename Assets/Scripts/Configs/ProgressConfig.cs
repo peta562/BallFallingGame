@@ -11,7 +11,7 @@ namespace Configs {
     }
     
     [CreateAssetMenu(fileName = "ProgressConfig", menuName = "ScriptableObjects/Configs/ProgressConfig", order = 3)]
-    public class ProgressConfig : ScriptableObject {
+    public class ProgressConfig : BaseConfig {
         public List<LevelInfo> Levels = new List<LevelInfo>();
         public bool IsEndlessGameplayEnabled; // ToDo
         public int MaxLevels => Levels.Count;

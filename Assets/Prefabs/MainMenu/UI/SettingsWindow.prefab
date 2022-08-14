@@ -1244,8 +1244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseButtonPrefab: {fileID: 9138023529200619026, guid: 4f6f9326c934b4043b975065150e99c9, type: 3}
   CloseButtonRoot: {fileID: 1244645686115064935}
-  ShowAnimation: 0
-  HideAnimation: 0
+  ShowAnimation: 4
+  HideAnimation: 5
   VolumeSlider: {fileID: 6238393344578791932}
   ToggleMusicSoundButton: {fileID: 7706092415836480012}
   ToggleEffectSoundButton: {fileID: 7235249606945536125}

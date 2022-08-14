@@ -5,8 +5,9 @@ namespace Configs {
         ConfigScore,
         HealthBallScore,
     }
+    
     [CreateAssetMenu(fileName = "GameConfig", menuName = "ScriptableObjects/Configs/GameConfig", order = 1)]
-    public class GameConfig : ScriptableObject {
+    public class GameConfig : BaseConfig {
         public int MaxLives;
         public int BallSpeed;
         public int BonusSpeed;
