@@ -35,7 +35,7 @@ namespace Core.UI.WindowsUI.Windows {
             SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             Hide();
             EventManager.Instance.Fire(new LevelFinished(false));
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+            GameContext.Instance.SceneLoader.LoadScene(SceneNames.MainMenu);
         }
     }
 }

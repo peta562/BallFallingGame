@@ -42,7 +42,7 @@ namespace Core.UI.WindowsUI.Windows {
             SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             Hide();
             _levelController.StartLevel(_levelInfo);
-            SceneLoader.Instance.LoadScene(SceneNames.Level);
+            GameContext.Instance.SceneLoader.LoadScene(SceneNames.Level);
         }
     }
 }

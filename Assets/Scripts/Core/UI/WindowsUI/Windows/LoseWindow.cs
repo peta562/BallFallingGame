@@ -17,7 +17,7 @@ namespace Core.UI.WindowsUI.Windows {
             OkButton.onClick.RemoveListener(OnOkButtonClicked);
 
             base.Hide();
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+            GameContext.Instance.SceneLoader.LoadScene(SceneNames.MainMenu);
         }
         
         void OnOkButtonClicked() {
