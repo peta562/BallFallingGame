@@ -26,6 +26,10 @@ namespace Core.UI.MainMenuUI {
         }
 
         public void DeInit() {
+            _progressController = null;
+            _musicController = null;
+            _windowManager = null;
+            
             PlayButton.onClick.RemoveListener(OnPlayButtonClicked);
             SettingsButton.onClick.RemoveListener(OnSettingsButtonClicked);
         }
