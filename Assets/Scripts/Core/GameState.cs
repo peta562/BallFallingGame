@@ -22,7 +22,7 @@ namespace Core {
         public ScoreController ScoreController { get; private set; }
         public LevelController LevelController { get; private set; }
         public ProgressController ProgressController { get; private set; }
-        public SettingsController SettingsController { get; private set; }
+        public MusicController MusicController { get; private set; }
 
         GameConfig GameConfig { get; set; }
         PlayableObjectsConfig PlayableObjectsConfig { get; set; }
@@ -69,7 +69,7 @@ namespace Core {
             BallsController = Add(new BallsController(GameConfig, PlayableObjectsConfig));
             BonusController = Add(new BonusController(GameConfig, PlayableObjectsConfig));
             ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, gameContext));
-            SettingsController = Add(new SettingsController());
+            MusicController = Add(new MusicController());
         }
 
         void RemoveControllers() {

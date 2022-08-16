@@ -34,7 +34,7 @@ namespace Core.UI.WindowsUI {
 	        
             _onHideAction = null;
 
-            PrefabLoader.UnloadAsset(_closeButton.gameObject);
+            PrefabLoader.UnloadAsset(_closeButton);
         }
         
         public virtual void Show() {

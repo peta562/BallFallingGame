@@ -12,13 +12,13 @@ namespace Core.UI.MainMenuUI {
         [SerializeField] Button SettingsButton;
 
         ProgressController _progressController;
-        SettingsController _settingsController;
+        MusicController _musicController;
         WindowManager _windowManager;
 
-        public void Init(ProgressController progressController, SettingsController settingsController,
+        public void Init(ProgressController progressController, MusicController musicController,
             WindowManager windowManager) {
             _progressController = progressController;
-            _settingsController = settingsController;
+            _musicController = musicController;
             _windowManager = windowManager;
 
             PlayButton.onClick.AddListener(OnPlayButtonClicked);
@@ -37,7 +37,7 @@ namespace Core.UI.MainMenuUI {
 
         void OnSettingsButtonClicked() {
             SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
-            _windowManager.ShowWindow<SettingsWindow>(x => x.Init(_settingsController));
+            _windowManager.ShowWindow<SettingsWindow>(x => x.Init(_musicController));
         }
     }
 }

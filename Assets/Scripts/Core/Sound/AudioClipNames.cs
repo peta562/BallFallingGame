@@ -5,5 +5,6 @@ namespace Core.Sound {
         ObjectKill,
         LoseSound,
         WinSound,
+        MainMusic,
     }
 }

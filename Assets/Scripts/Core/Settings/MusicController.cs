@@ -2,7 +2,7 @@ using Core.SaveLoad;
 using Core.Sound;
 
 namespace Core.Settings {
-    public sealed class SettingsController : BaseController {
+    public sealed class MusicController : BaseController {
         public float SoundVolume { get; private set; }
         public bool MusicOn { get; private set; }
         public bool SoundEffectsOn { get; private set; }
@@ -21,6 +21,8 @@ namespace Core.Settings {
             SoundManager.Instance.ChangeVolume(SoundVolume);
             SoundManager.Instance.ToggleMusic(MusicOn);
             SoundManager.Instance.ToggleSoundEffects(SoundEffectsOn);
+            
+            SoundManager.Instance.StartPlayingMusic(AudioClipNames.MainMusic);
         }
 
         public override void Save(SaveData saveData) {

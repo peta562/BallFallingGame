@@ -25,7 +25,7 @@ namespace Core.Starters {
         }
 
         void InitUI(GameState gameState) {
-            MainMenuUi.Init(gameState.ProgressController, gameState.SettingsController, _windowManager);
+            MainMenuUi.Init(gameState.ProgressController, gameState.MusicController, _windowManager);
         }
 
         void DeInitUI() {

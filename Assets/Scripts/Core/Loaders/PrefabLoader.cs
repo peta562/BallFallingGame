@@ -17,12 +17,12 @@ namespace Core.Loaders {
             return component;
         }
 
-        public void UnloadAsset(GameObject gameObject) {
-            if ( gameObject == null ) {
+        public void UnloadAsset(Component component) {
+            if ( component == null ) {
                 return;
             }
-            
-            Addressables.ReleaseInstance(gameObject);
+
+            Addressables.ReleaseInstance(component.gameObject);
         }
     }
 }

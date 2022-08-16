@@ -36,6 +36,10 @@ namespace Core.UI.WindowsUI {
             return _windows[bundleName];
         }
 
+        void OnDestroy() {
+            PrefabLoader.UnloadAsset(_windowBackground);
+        }
+
         List<BaseWindow> InstantiateWindows(IEnumerable<GameObject> windows) {
             var addedWindows = new List<BaseWindow>();
             

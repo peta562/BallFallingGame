@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Core.Loaders;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Core.Scenes {
@@ -23,15 +22,11 @@ namespace Core.Scenes {
             } while ( scene.progress < 0.9f );
 
             await Task.Delay(1000);
-
-            scene.allowSceneActivation = true;
-            scene.completed += OnSceneLoaded;
-        }
-
-        void OnSceneLoaded(AsyncOperation obj) {
-            _loadingScreen.DeInit();
             
-            PrefabLoader.UnloadAsset(_loadingScreen.gameObject);
+            scene.allowSceneActivation = true;
+            
+            _loadingScreen.DeInit();
+            PrefabLoader.UnloadAsset(_loadingScreen);
         }
     }
 }

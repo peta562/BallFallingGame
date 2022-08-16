@@ -6,11 +6,11 @@ namespace Core.Sound {
         [SerializeField] AudioSource SoundEffectsAudioSource;
         [SerializeField] AudioSource MusicAudioSource;
 
-        public void PlaySound(AudioClipNames audioClipName) {
-            var audioClip = GetAudioClip(audioClipName);
+        public void PlaySound(AudioClipNames soundName) {
+            var audioClip = GetAudioClip(soundName);
 
             if ( audioClip == null ) {
-                Debug.LogError($"Can't find audio clip for {audioClipName.ToString()}");
+                Debug.LogError($"Can't find audio clip for {soundName.ToString()}");
                 return;
             }
 
@@ -19,6 +19,19 @@ namespace Core.Sound {
             }
             
             SoundEffectsAudioSource.PlayOneShot(audioClip);
+        }
+
+        public void StartPlayingMusic(AudioClipNames musicName) {
+            var musicClip = GetAudioClip(musicName);
+
+            if ( musicClip == null ) {
+                Debug.LogError($"Can't find audio clip for {musicName.ToString()}");
+                return;
+            }
+
+            MusicAudioSource.clip = musicClip;
+            MusicAudioSource.loop = true;
+            MusicAudioSource.Play();
         }
 
         public void ChangeVolume(float value) {
