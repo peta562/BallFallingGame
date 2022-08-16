@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Core.Loaders {
-    public sealed class AssetLoader {
+    public sealed class PrefabLoader {
         public async Task<T> LoadAsset<T>(string id, Transform transform = null) {
             var handle = Addressables.InstantiateAsync(id, transform);
 

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LevelWindows
+  m_EditorClassIdentifier: 
+  m_GroupName: LevelWindows
+  m_Data:
+    m_SerializedData: []
+  m_GUID: fc7ef44ec28db884e8ada29ccea770f3
+  m_SerializeEntries:
+  - m_GUID: bae8008b29816614db78790bc2430ac1
+    m_Address: LoseWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelWindows
+  - m_GUID: e6f9be422077663469854b43d64071e0
+    m_Address: PauseWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelWindows
+  - m_GUID: c0815f250e9ad634f94de1986c6214ca
+    m_Address: WinWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelWindows
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9991204fa2925534f94b3065b4e56fc4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 657d10f4f6b03b44d9a8d6b30c48f6f3, type: 2}
+    - {fileID: 11400000, guid: 77fab3184d974a14c83247907eaa58a0, type: 2}

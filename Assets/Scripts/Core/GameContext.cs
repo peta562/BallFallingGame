@@ -9,17 +9,19 @@ namespace Core {
         public static GameContext Instance { get; private set; }
         
         public ISaveLoadManager SaveLoadManager { get; }
-        public AssetLoader AssetLoader { get; }
+        public PrefabLoader PrefabLoader { get; }
         public SceneLoader SceneLoader { get; }
         public IConfigLoader ConfigLoader { get; }
+        public BundleLoader BundleLoader { get; }
         public PauseManager PauseManager { get; }
         public WindowManager WindowManager { get; }
 
         GameContext() {
             SaveLoadManager = new JsonSaveLoadManager();
-            AssetLoader = new AssetLoader();
+            PrefabLoader = new PrefabLoader();
             SceneLoader = new SceneLoader();
             ConfigLoader = new ConfigLoader();
+            BundleLoader = new BundleLoader();
             PauseManager = new PauseManager();
             WindowManager = new WindowManager();
         }

@@ -502,7 +502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b53c6fcb3371b1440a920cd854e193df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd787baad5b3bd042985d1aa75da36a7, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -698,7 +698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41b247b7ffc4dec8892bc227979853f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloseButtonPrefab: {fileID: 9138023529200619026, guid: 4f6f9326c934b4043b975065150e99c9, type: 3}
   CloseButtonRoot: {fileID: 6509393784897312579}
   ShowAnimation: 4
   HideAnimation: 4

@@ -8,10 +8,10 @@ namespace Core.UI.WindowsUI {
         List<BaseWindow> _windows;
         WindowBackground _windowBackground;
         BaseWindow _currentWindow;
-        
-        public void Init(List<BaseWindow> windows, WindowBackground windowBackground) {
-            _windows = windows;
-            _windowBackground = windowBackground;
+
+        public async void Init(string bundleName) {
+            _windowBackground = await WindowHolder.Instance.GetWindowBackground();
+            _windows = await WindowHolder.Instance.GetWindows(bundleName);
 
             foreach (var window in _windows) {
                 window.Init(OnHide);
@@ -22,9 +22,9 @@ namespace Core.UI.WindowsUI {
             foreach (var window in _windows) {
                 window.DeInit();
             }
-            
-            _windows = null;
+
             _windowBackground = null;
+            _windows = null;
         }
 
         public void ShowWindow<T>(Action<T> action = null, bool remember = true) where T : BaseWindow {
@@ -67,7 +67,7 @@ namespace Core.UI.WindowsUI {
             window.Show();
             _currentWindow = window;
         }
-
+        
         void OnHide() {
             _windowBackground.Hide();
             TryShowLast();

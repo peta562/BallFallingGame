@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Core.Starters {
     public class MainMenuStarter : MonoBehaviour {
         [SerializeField] MainMenuUI MainMenuUi;
-        [SerializeField] WindowHolder WindowHolder;
 
         WindowManager _windowManager;
 
@@ -13,7 +12,7 @@ namespace Core.Starters {
             var gameState = GameState.Instance;
             
             _windowManager = GameContext.Instance.WindowManager;
-            _windowManager.Init(WindowHolder.Windows, WindowHolder.WindowBackground);
+            _windowManager.Init("MainMenuWindows");
 
             InitUI(gameState);
         }
@@ -23,10 +22,6 @@ namespace Core.Starters {
             _windowManager = null;
 
             DeInitUI();
-        }
-
-        void Update() {
-            
         }
 
         void InitUI(GameState gameState) {

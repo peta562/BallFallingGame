@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: AssetDependencies
+  m_EditorClassIdentifier: 
+  m_GroupName: AssetDependencies
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5cffec96987bb114ba84cfb1939669e9
+  m_SerializeEntries:
+  - m_GUID: 04e08a921baffb94db0872296bdbea08
+    m_Address: Assets/Fonts/PeaberryBase SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
+    m_Address: Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: Assets/ThirdParty/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 737d767484545904180fcd96dbdcd86d
+    m_Address: Assets/Images/UI/Windows/window_head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 060f34e9e1af3a04d9e3abeddaff64da
+    m_Address: Assets/Images/UI/Windows/common_window_back.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd787baad5b3bd042985d1aa75da36a7
+    m_Address: Assets/Images/UI/Windows/black_button.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00fa91887667e834593755eccf77f864
+    m_Address: Assets/Images/UI/Windows/red_button.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9991204fa2925534f94b3065b4e56fc4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f940db83566f1bf4bb3909b73183f56b, type: 2}
+    - {fileID: 11400000, guid: 8e5aac26741af1e4ca3ad3e09b7a04b3, type: 2}

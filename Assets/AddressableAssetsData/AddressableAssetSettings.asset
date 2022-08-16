@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: c5cc381641848034eb08139dbfc49f85
+  m_DefaultGroup: 106016dd398f22b40b61d49bedb91a5d
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -37,7 +37,13 @@ MonoBehaviour:
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 6a3290005c610634b8426f9570fee8f9, type: 2}
+  - {fileID: 11400000, guid: 43217ae22d174164a9fa3c95abc74c23, type: 2}
   - {fileID: 11400000, guid: df747933aa257724c9bdaa98d9187168, type: 2}
+  - {fileID: 11400000, guid: 08700216eac0a174890d9660b87953aa, type: 2}
+  - {fileID: 11400000, guid: 156cad267c1286842b8b1683453550f2, type: 2}
+  - {fileID: 11400000, guid: 0d65486f16a76aa48b7ab8c7daa65320, type: 2}
+  - {fileID: 11400000, guid: cafc17e6a125d1f4d826299e82ac22a2, type: 2}
+  - {fileID: 11400000, guid: 2caa767631a29f54ca05a2f41badcd6f, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -79,6 +85,9 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - LevelWindows
+    - MainMenuWindows
+    - WindowBackground
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 9dad5f2eb6e9b1e46911c8e6f52d3047, type: 2}

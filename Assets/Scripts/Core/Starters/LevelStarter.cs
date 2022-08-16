@@ -8,7 +8,6 @@ namespace Core.Starters {
     public class LevelStarter : MonoBehaviour {
         [SerializeField] PlayableObjectFactory PlayableObjectFactory;
         [SerializeField] LevelUI LevelUi;
-        [SerializeField] WindowHolder WindowHolder;
 
         WindowManager _windowManager;
         LevelManager _levelManager;
@@ -17,7 +16,7 @@ namespace Core.Starters {
             var gameState = GameState.Instance;
 
             _windowManager = GameContext.Instance.WindowManager;
-            _windowManager.Init(WindowHolder.Windows, WindowHolder.WindowBackground);
+            _windowManager.Init("LevelWindows");
 
             gameState.BallsController.SetFactory(PlayableObjectFactory);
             gameState.BonusController.SetFactory(PlayableObjectFactory);

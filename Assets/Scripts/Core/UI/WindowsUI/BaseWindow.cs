@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Loaders;
 using Core.Sound;
 using DG.Tweening;
 using UnityEngine;
@@ -6,8 +7,7 @@ using UnityEngine.UI;
 
 namespace Core.UI.WindowsUI {
     public abstract class BaseWindow : MonoBehaviour {
-	    [SerializeField] Button CloseButtonPrefab;
-        [SerializeField] RectTransform CloseButtonRoot;
+	    [SerializeField] RectTransform CloseButtonRoot;
         [SerializeField] ShowAnimationType ShowAnimation;
         [SerializeField] HideAnimationType HideAnimation;
 
@@ -16,14 +16,16 @@ namespace Core.UI.WindowsUI {
         Action _onHideAction;
         Sequence _sequence;
         Button _closeButton;
+        
+        PrefabLoader PrefabLoader => GameContext.Instance.PrefabLoader;
 
-        public void Init(Action onHideAction) {
+        public async void Init(Action onHideAction) {
 	        _rectTransform = GetComponent<RectTransform>();
 	        _canvasGroup = GetComponent<CanvasGroup>();
 	        
             _onHideAction = onHideAction;
 
-            _closeButton = Instantiate(CloseButtonPrefab, CloseButtonRoot);
+            _closeButton = await PrefabLoader.LoadAsset<Button>("CloseButton", CloseButtonRoot);
         }
 
         public void DeInit() {
@@ -31,12 +33,13 @@ namespace Core.UI.WindowsUI {
 	        _canvasGroup = null;
 	        
             _onHideAction = null;
-            
-            Destroy(_closeButton);
+
+            PrefabLoader.UnloadAsset(_closeButton.gameObject);
         }
         
         public virtual void Show() {
 	        _closeButton.onClick.AddListener(OnCloseButtonClicked);
+	        _closeButton.gameObject.SetActive(true);
             gameObject.SetActive(true);
             PlayShowAnimation();
         }
@@ -44,6 +47,7 @@ namespace Core.UI.WindowsUI {
         public virtual void Hide() {
 	        _closeButton.onClick.RemoveListener(OnCloseButtonClicked);
             PlayHideAnimation();
+            _closeButton.gameObject.SetActive(false);
             gameObject.SetActive(false);
             _onHideAction?.Invoke();
         }

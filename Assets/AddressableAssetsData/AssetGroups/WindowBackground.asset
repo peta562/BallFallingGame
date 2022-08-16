@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: WindowBackground
+  m_EditorClassIdentifier: 
+  m_GroupName: WindowBackground
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d5b9caeab33d6b2489d7a920a531595f
+  m_SerializeEntries:
+  - m_GUID: 66776122913202748965bcaba8d6c81d
+    m_Address: WindowBackground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9991204fa2925534f94b3065b4e56fc4, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d0ae6dbb58ec4134c867700ef41c846a, type: 2}
+    - {fileID: 11400000, guid: 72db0f0018691b741aff8c40adf72a31, type: 2}
