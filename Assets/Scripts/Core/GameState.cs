@@ -31,18 +31,14 @@ namespace Core {
         SaveData _saveData;
         
         IConfigLoader ConfigLoader => GameContext.Instance.ConfigLoader;
-
-        GameState() {
-            CreateGameState();
-        }
-
+        
         public void DestroyGameState() {
             SaveData();
             RemoveControllers();
             UnloadConfigs();
         }
 
-        async void CreateGameState() {
+        public async Task CreateGameState() {
             await LoadConfigs();
             AddControllers();
             LoadData();

@@ -31,13 +31,8 @@ namespace Core.UI.WindowsUI {
             var downloadedWindows = await BundleLoader.DownloadBundle(bundleName);
             var instantiatedWindows = InstantiateWindows(downloadedWindows);
             _windows.Add(bundleName, instantiatedWindows);
-            BundleLoader.ReleaseBundle();
 
             return _windows[bundleName];
-        }
-
-        void OnDestroy() {
-            PrefabLoader.UnloadAsset(_windowBackground);
         }
 
         List<BaseWindow> InstantiateWindows(IEnumerable<GameObject> windows) {

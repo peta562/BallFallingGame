@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace Core.Starters {
     public class GameStarter : MonoBehaviour {
-        void Awake() {
+        async void Awake() {
             GameContext.TryCreate();
             GameState.TryCreate();
             
+            await GameState.Instance.CreateGameState();
             GoToMainMenuScene();
         }
 
