@@ -22,7 +22,7 @@ namespace Core {
         public ScoreController ScoreController { get; private set; }
         public LevelController LevelController { get; private set; }
         public ProgressController ProgressController { get; private set; }
-        public MusicController MusicController { get; private set; }
+        public SoundController SoundController { get; private set; }
 
         GameConfig GameConfig { get; set; }
         PlayableObjectsConfig PlayableObjectsConfig { get; set; }
@@ -32,16 +32,16 @@ namespace Core {
         
         IConfigLoader ConfigLoader => GameContext.Instance.ConfigLoader;
         
-        public void DestroyGameState() {
-            SaveData();
-            RemoveControllers();
-            UnloadConfigs();
-        }
-
         public async Task CreateGameState() {
             await LoadConfigs();
             AddControllers();
             LoadData();
+        }
+        
+        public void DestroyGameState() {
+            SaveData();
+            RemoveControllers();
+            UnloadConfigs();
         }
 
         async Task LoadConfigs() {
@@ -65,14 +65,11 @@ namespace Core {
             BallsController = Add(new BallsController(GameConfig, PlayableObjectsConfig));
             BonusController = Add(new BonusController(GameConfig, PlayableObjectsConfig));
             ProgressController = Add(new ProgressController(ProgressConfig, ScoreController, LevelController, gameContext));
-            MusicController = Add(new MusicController());
+            SoundController = Add(new SoundController());
         }
 
         void RemoveControllers() {
-            for (var i = 0; i < _controllers.Count; i++) {
-                _controllers[i] = null;
-                _controllers.Remove(_controllers[i]);
-            }
+            _controllers.Clear();
         }
         
         void SaveData() {

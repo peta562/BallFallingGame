@@ -21,8 +21,16 @@ MonoBehaviour:
     TargetScore: 300
   - Id: 4
     TargetScore: 450
-  - Id: 4
+  - Id: 5
     TargetScore: 500
-  - Id: 4
+  - Id: 6
     TargetScore: 600
+  - Id: 7
+    TargetScore: 700
+  - Id: 8
+    TargetScore: 800
+  - Id: 9
+    TargetScore: 900
+  - Id: 10
+    TargetScore: 1000
   IsEndlessGameplayEnabled: 0

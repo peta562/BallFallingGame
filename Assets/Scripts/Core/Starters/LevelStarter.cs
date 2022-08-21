@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace Core.Starters {
     public class LevelStarter : MonoBehaviour {
+        const string BundleName = "LevelWindows";
+        
         [SerializeField] PlayableObjectFactory PlayableObjectFactory;
         [SerializeField] LevelUI LevelUi;
 
@@ -16,7 +18,7 @@ namespace Core.Starters {
             var gameState = GameState.Instance;
 
             _windowManager = GameContext.Instance.WindowManager;
-            _windowManager.Init("LevelWindows");
+            _windowManager.Init(BundleName);
 
             gameState.BallsController.SetFactory(PlayableObjectFactory);
             gameState.BonusController.SetFactory(PlayableObjectFactory);

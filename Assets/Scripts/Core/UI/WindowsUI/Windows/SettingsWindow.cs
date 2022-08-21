@@ -21,16 +21,16 @@ namespace Core.UI.WindowsUI.Windows {
         [SerializeField] Sprite EffectsSoundButtonOnSprite;
         [SerializeField] Sprite EffectsSoundButtonOffSprite;
 
-        MusicController _musicController;
+        SoundController _soundController;
         
-        public void Init(MusicController musicController) {
-            _musicController = musicController;
+        public void Init(SoundController soundController) {
+            _soundController = soundController;
         }
         
         public override void Show() {
-            VolumeSlider.value = _musicController.SoundVolume;
-            ChangeMusicButtonSprite(_musicController.MusicOn);
-            ChangeSoundEffectsButtonSprite(_musicController.SoundEffectsOn);
+            VolumeSlider.value = _soundController.SoundVolume;
+            ChangeMusicButtonSprite(_soundController.MusicOn);
+            ChangeSoundEffectsButtonSprite(_soundController.SoundEffectsOn);
 
             VolumeSlider.onValueChanged.AddListener(OnSliderValueChanged);
             ToggleMusicSoundButton.onClick.AddListener(OnToggleMusicSoundButtonClicked);
@@ -48,21 +48,21 @@ namespace Core.UI.WindowsUI.Windows {
         }
 
         void OnSliderValueChanged(float value) {
-            _musicController.ChangeSoundVolume(value);
+            _soundController.ChangeSoundVolume(value);
         }
 
         void OnToggleMusicSoundButtonClicked() {
             SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             
-            _musicController.ToggleMusic();
-            ChangeMusicButtonSprite(_musicController.MusicOn);
+            _soundController.ToggleMusic();
+            ChangeMusicButtonSprite(_soundController.MusicOn);
         }
 
         void OnToggleEffectSoundButtonClicked() {
             SoundManager.Instance.PlaySound(AudioClipNames.ButtonClick);
             
-            _musicController.ToggleSoundEffects();
-            ChangeSoundEffectsButtonSprite(_musicController.SoundEffectsOn);
+            _soundController.ToggleSoundEffects();
+            ChangeSoundEffectsButtonSprite(_soundController.SoundEffectsOn);
         }
 
         void ChangeMusicButtonSprite(bool isOn) {

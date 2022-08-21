@@ -46,10 +46,11 @@ namespace Core.UI.WindowsUI {
 
         public virtual void Hide() {
 	        _closeButton.onClick.RemoveListener(OnCloseButtonClicked);
-            PlayHideAnimation();
-            _closeButton.gameObject.SetActive(false);
-            gameObject.SetActive(false);
-            _onHideAction?.Invoke();
+            PlayHideAnimation(() => {
+	            _closeButton.gameObject.SetActive(false);
+	            gameObject.SetActive(false);
+	            _onHideAction?.Invoke();
+            });
         }
 
         void OnCloseButtonClicked() {
@@ -63,10 +64,11 @@ namespace Core.UI.WindowsUI {
 	        _sequence.Play();
         }
 
-        void PlayHideAnimation() {
+        void PlayHideAnimation(TweenCallback callback) {
 	        _sequence.Kill();
 	        _sequence = GetHideAnimation();
-	        _sequence.Play();
+	        _sequence.Play()
+		        .OnComplete(callback);
         }
 
         #region Show Animation
@@ -74,7 +76,7 @@ namespace Core.UI.WindowsUI {
         const float ShowFadeTime       = 0.255f;
         const float ShowMoveTime       = 0.25f;
         const float ShowRotateTime     = 0.5f;
-        const float ShowOffset         = 3000;
+        const float ShowOffset         = 1000;
         const float ShowShakePosTime   = 0.35f;
         const float ShowShakeScaleTime = 1.5f;
         const float ShowScaleDown      = 0.015f;
@@ -151,8 +153,8 @@ namespace Core.UI.WindowsUI {
 		const float HideScaleUp       = 1.2f;
 		const float HideScaleUpTime   = 0.05F;
 		const float HideScaleDownTime = 0.255F;
-		const float HideMoveFadeTime  = 1.5f;
-		const float HideOffset        = 3000;
+		const float HideMoveFadeTime  = 0.5f;
+		const float HideOffset        = 1000;
 
 		Sequence GetHideAnimation() {
 			switch ( HideAnimation ) {

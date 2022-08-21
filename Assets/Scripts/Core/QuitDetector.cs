@@ -1,5 +1,5 @@
 namespace Core {
-    public class QuitManager : Singleton<QuitManager> {
+    public class QuitDetector : Singleton<QuitDetector> {
         void OnApplicationQuit() {
             GameState.Instance.DestroyGameState();
         }

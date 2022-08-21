@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Core.Starters {
     public class MainMenuStarter : MonoBehaviour {
+        const string BundleName = "MainMenuWindows";
+        
         [SerializeField] MainMenuUI MainMenuUi;
 
         WindowManager _windowManager;
@@ -12,7 +14,7 @@ namespace Core.Starters {
             var gameState = GameState.Instance;
             
             _windowManager = GameContext.Instance.WindowManager;
-            _windowManager.Init("MainMenuWindows");
+            _windowManager.Init(BundleName);
 
             InitUI(gameState);
         }
@@ -25,7 +27,7 @@ namespace Core.Starters {
         }
 
         void InitUI(GameState gameState) {
-            MainMenuUi.Init(gameState.ProgressController, gameState.MusicController, _windowManager);
+            MainMenuUi.Init(gameState.ProgressController, gameState.SoundController, _windowManager);
         }
 
         void DeInitUI() {

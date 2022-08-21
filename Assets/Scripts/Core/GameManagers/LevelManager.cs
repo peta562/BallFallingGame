@@ -157,6 +157,7 @@ namespace Core.GameManagers {
 
         void OnLevelFinished(LevelFinished ev) {
             _isLevelActive = false;
+            _scoreController.FinishLevel();
             _progressController.FinishLevel(ev.Win);
             _ballsController.FinishLevel();
             _bonusController.FinishLevel();

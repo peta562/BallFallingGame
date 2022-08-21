@@ -2,7 +2,7 @@ using Core.SaveLoad;
 using Core.Sound;
 
 namespace Core.Settings {
-    public sealed class MusicController : BaseController {
+    public sealed class SoundController : BaseController {
         public float SoundVolume { get; private set; }
         public bool MusicOn { get; private set; }
         public bool SoundEffectsOn { get; private set; }

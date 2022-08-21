@@ -18,8 +18,10 @@ namespace Core.UI.WindowsUI {
             if ( _windowBackground ) {
                 return _windowBackground;
             }
-            _windowBackground = await PrefabLoader.LoadAsset<WindowBackground>("WindowBackground", WindowsRoot.transform);
-            
+
+            _windowBackground =
+                await PrefabLoader.LoadAsset<WindowBackground>("WindowBackground", WindowsRoot.transform);
+
             return _windowBackground;
         }
 
@@ -27,7 +29,7 @@ namespace Core.UI.WindowsUI {
             if ( _windows.TryGetValue(bundleName, out var windows) ) {
                 return windows;
             }
-            
+
             var downloadedWindows = await BundleLoader.DownloadBundle(bundleName);
             var instantiatedWindows = InstantiateWindows(downloadedWindows);
             _windows.Add(bundleName, instantiatedWindows);
@@ -37,13 +39,14 @@ namespace Core.UI.WindowsUI {
 
         List<BaseWindow> InstantiateWindows(IEnumerable<GameObject> windows) {
             var addedWindows = new List<BaseWindow>();
-            
+
             foreach (var window in windows) {
                 if ( !Instantiate(window, WindowsRoot.transform)
                     .TryGetComponent<BaseWindow>(out var instantiatedWindow) ) {
                     Debug.LogError($"There are no component {typeof(BaseWindow)} on window.");
                     continue;
-                };
+                }
+
                 instantiatedWindow.gameObject.SetActive(false);
                 addedWindows.Add(instantiatedWindow);
             }

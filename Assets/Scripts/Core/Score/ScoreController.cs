@@ -73,6 +73,10 @@ namespace Core.Score {
             EventManager.Instance.Fire(new ScoreMultiplyStarted(_multiplier, _multiplierTime));
         }
 
+        public void FinishLevel() {
+            StopMultiplyScore();
+        }
+
         void StopMultiplyScore() {
             _isMultiplyScoreEnabled = false;
             
