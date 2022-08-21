@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Core.Starters {
     public class GameStarter : MonoBehaviour {
         async void Awake() {
+            ConfigureBuildSettings();
             GameContext.TryCreate();
             GameState.TryCreate();
             
@@ -13,6 +14,10 @@ namespace Core.Starters {
 
         void GoToMainMenuScene() {
             GameContext.Instance.SceneLoader.LoadScene(SceneNames.MainMenu);
+        }
+
+        void ConfigureBuildSettings() {
+            Application.targetFrameRate = 60;
         }
     }
 }

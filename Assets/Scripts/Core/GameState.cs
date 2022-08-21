@@ -38,10 +38,8 @@ namespace Core {
             LoadData();
         }
         
-        public void DestroyGameState() {
+        public void Save() {
             SaveData();
-            RemoveControllers();
-            UnloadConfigs();
         }
 
         async Task LoadConfigs() {
@@ -50,12 +48,6 @@ namespace Core {
             ProgressConfig = await ConfigLoader.Load<ProgressConfig>("ProgressConfig");
         }
 
-        void UnloadConfigs() {
-            ConfigLoader.Unload(GameConfig);
-            ConfigLoader.Unload(PlayableObjectsConfig);
-            ConfigLoader.Unload(ProgressConfig);
-        }
-        
         void AddControllers() {
             var gameContext = GameContext.Instance;
             
@@ -68,10 +60,6 @@ namespace Core {
             SoundController = Add(new SoundController());
         }
 
-        void RemoveControllers() {
-            _controllers.Clear();
-        }
-        
         void SaveData() {
             foreach (var controller in _controllers) {
                 controller.Save(_saveData);

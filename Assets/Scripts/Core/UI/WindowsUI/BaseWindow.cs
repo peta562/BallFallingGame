@@ -148,12 +148,12 @@ namespace Core.UI.WindowsUI {
 
 		#region Hide Animation
 
-		const float HideFadeDelay     = 0.1F;
+		const float HideFadeDelay     = 0.05F;
 		const float HideFadeTime      = 0.19F;
 		const float HideScaleUp       = 1.2f;
 		const float HideScaleUpTime   = 0.05F;
 		const float HideScaleDownTime = 0.255F;
-		const float HideMoveFadeTime  = 0.5f;
+		const float HideMoveFadeTime  = 0.2f;
 		const float HideOffset        = 1000;
 
 		Sequence GetHideAnimation() {

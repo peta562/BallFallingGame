@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Windows
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: fd787baad5b3bd042985d1aa75da36a7, type: 3}
+    - {fileID: 2800000, guid: 4cd1b426cb52f644cb2727792a903a4f, type: 3}
+    - {fileID: 2800000, guid: 060f34e9e1af3a04d9e3abeddaff64da, type: 3}
+    - {fileID: 2800000, guid: a2e6b440753533d4fac38ba8f8f30ba1, type: 3}
+    - {fileID: 2800000, guid: 3a1a2de428dee7f4ea035e92339ce496, type: 3}
+    - {fileID: 2800000, guid: 00fa91887667e834593755eccf77f864, type: 3}
+    - {fileID: 2800000, guid: c31cd7030d2d3ce4baf5c3f6809c2e37, type: 3}
+    - {fileID: 2800000, guid: 737d767484545904180fcd96dbdcd86d, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a2e6b440753533d4fac38ba8f8f30ba1, type: 3}
+  - {fileID: 21300000, guid: c31cd7030d2d3ce4baf5c3f6809c2e37, type: 3}
+  - {fileID: 21300000, guid: 737d767484545904180fcd96dbdcd86d, type: 3}
+  - {fileID: 21300000, guid: 3a1a2de428dee7f4ea035e92339ce496, type: 3}
+  - {fileID: 21300000, guid: 4cd1b426cb52f644cb2727792a903a4f, type: 3}
+  - {fileID: 21300000, guid: 00fa91887667e834593755eccf77f864, type: 3}
+  - {fileID: 21300000, guid: 060f34e9e1af3a04d9e3abeddaff64da, type: 3}
+  - {fileID: 21300000, guid: fd787baad5b3bd042985d1aa75da36a7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - cross
+  - win_window_back
+  - window_head
+  - lose_window_back
+  - CGB01-grey_L_rounded_btn
+  - red_button
+  - common_window_back
+  - black_button
+  m_RenderDataMap: {}
+  m_Tag: Windows
+  m_IsVariant: 0
