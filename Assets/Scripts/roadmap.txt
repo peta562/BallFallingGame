@@ -1,0 +1,16 @@
+﻿TODO
+
+High priority:
+
+UI windows scaler
+Paralax effect
+Endless gameplay
+Difficult curve
+Leaderboards
+
+
+Low prority:
+
+Ads
+IAP
+etc...
