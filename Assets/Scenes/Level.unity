@@ -226,6 +226,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5820960723302653331, guid: c740502cf53723942978ba59e4a7efa5, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820960723302653331, guid: c740502cf53723942978ba59e4a7efa5, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820960723302653331, guid: c740502cf53723942978ba59e4a7efa5, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 6845338522791558419, guid: c740502cf53723942978ba59e4a7efa5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -14.199997
